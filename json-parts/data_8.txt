@@ -1,0 +1,55 @@
+bjective":"To understand how to use React's Strict Mode to identify and fix potential issues in your components.",
+      "practical_application":"Imagine you are building a large, complex React application with many components. You want to ensure that your code follows best practices and is free of any potential issues that could cause problems down the line.",
+      "step_by_step_solution":[
+         {
+            "step":"Wrap your top-level component in a <React.StrictMode> component.",
+            "code":"<React.StrictMode>\n  <App />\n</React.StrictMode>"
+         },
+         {
+            "step":"Identify and fix any issues that are flagged by the StrictMode component.",
+            "code":null
+         }
+      ]
+   },
+   {
+      "exercise_number":23,
+      "title":"React Performance Optimization",
+      "objective":"To understand how to optimize the performance of a React application using various techniques.",
+      "practical_application":"Imagine you are building a large React application with many components and data-heavy features. You want to ensure that your application runs smoothly and efficiently for all users, regardless of their device or internet connection speed.",
+      "step_by_step_solution":[
+         {
+            "step":"Use the React Developer Tools to identify performance bottlenecks in your application.",
+            "code":null
+         },
+         {
+            "step":"Implement code splitting to reduce the size of your JavaScript bundle.",
+            "code":null
+         },
+         {
+            "step":"Use memoization to optimize the rendering of components that rely on expensive computations or data fetches.",
+            "code":null
+         },
+         {
+            "step":"Use the shouldComponentUpdate lifecycle method or React's memo function to prevent unnecessary re-renders of components.",
+            "code":null
+         },
+         {
+            "step":"Optimize your data fetching and state management strategies to reduce the amount of unnecessary network requests or state updates.",
+            "code":null
+         }
+      ]
+   },
+   {
+      "exercise_number":24,
+      "title":"React Context API",
+      "objective":"To understand how to use the React Context API to manage global state in a React application.",
+      "practical_application":"Imagine you are building a multi-level navigation menu in a React application. You want to manage the open/closed state of each menu item without passing down props through multiple layers of components.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a new context using the createContext() function from the React library.",
+            "code":"const MyContext = React.createContext();"
+         },
+         {
+            "step":"Wrap your application components in a Provider component to make the context available to child components.",
+            "code":"<MyContext.Provider value={/* your data */}>\n  <App />\n</MyContext.Provider>"
+       

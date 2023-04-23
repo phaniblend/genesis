@@ -1,5 +1,7 @@
 .App {
-  text-align: center;
+  text-align: left;
+  padding: 60px;
+  width: 45%;
 }
 
 .App-logo {
@@ -18,7 +20,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
@@ -35,4 +37,57 @@
   to {
     transform: rotate(360deg);
   }
+}
+p {
+  color: navy;
+  text-indent: 30px;
+  text-transform: uppercase;
+}
+.exercise-number {
+color: rgb(232, 80, 24);
+font-style: italic;
+}
+.exercise-title{
+  color: rgb(9, 9, 178);
+}
+.exercise-consolidated-code{
+  display: block;
+  border-radius: 5px;
+  color:chocolate;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  background-color: black;
+  white-space: pre-wrap;
+  padding: 3%
+}
+.exercise-step{
+  font-size: 18px;
+  margin: 8px;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+}
+@media print {
+  .page-break {
+    page-break-after: always;
+  }
+}
+.exercise-code{
+  display: block;
+  border:3px solid rgb(9, 9, 178);
+  border-radius: 5px;
+  color:rgb(9, 1, 16);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  background-color: rgb(197, 194, 204);
+  padding: 3%;
+  white-space: pre-wrap;
+
+}
+
+h2, h1 {
+  display:inline;
+  margin: 3px;
+}
+code {
+  white-space: pre-wrap;
 }

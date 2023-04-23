@@ -1,0 +1,62 @@
+{formData.name} onChange={handleChange} />"
+         },
+         {
+            "step":"Create a function to handle form submission.",
+            "code":"const handleSubmit = (event) => {\n  event.preventDefault();\n  // Process form data\n};"
+         },
+         {
+            "step":"Attach the handleSubmit function to the onSubmit event of the form element.",
+            "code":"<form onSubmit={handleSubmit}>\n  ...\n</form>"
+         }
+      ]
+   },
+   {
+      "exercise_number":17,
+      "title":"React Context",
+      "objective":"To learn how to use React Context to share state between components without prop drilling.",
+      "practical_application":"Imagine you are building a multi-step form in a React application. You want to share the form data between the steps without passing it down through props.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a new context using the createContext() function.",
+            "code":"const MyContext = createContext();"
+         },
+         {
+            "step":"Wrap your application in a context provider component.",
+            "code":"<MyContext.Provider value={/* context value */}>\n  <App />\n</MyContext.Provider>"
+         },
+         {
+            "step":"Access the context value in any child component using the useContext() hook.",
+            "code":"const contextValue = useContext(MyContext);"
+         },
+         {
+            "step":"Update the context value using the setState() function.",
+            "code":"const [contextValue, setContextValue] = useState(/* initial value */);\nsetContextValue(/* new value */);"
+         }
+      ]
+   },
+   {
+      "exercise_number":18,
+      "title":"React Context",
+      "objective":"To learn how to use React Context to manage global state in a React application.",
+      "practical_application":"Imagine you are building a music player in React. You want to use React Context to manage the state of the music player across multiple components.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a new context using the createContext() function from the React library.",
+            "code":"const MusicPlayerContext = createContext();"
+         },
+         {
+            "step":"Wrap the relevant components in a Provider component and pass the state as a prop.",
+            "code":"<MusicPlayerContext.Provider value={{ isPlaying: true, volume: 50 }}>\n  <App />\n</MusicPlayerContext.Provider>"
+         },
+         {
+            "step":"Consume the context in a child component using the useContext() hook.",
+            "code":"const { isPlaying, volume } = useContext(MusicPlayerContext);"
+         }
+      ]
+   },
+   {
+      "exercise_number":19,
+      "title":"CSS Selectors",
+      "objective":"To learn how to use CSS selectors to style HTML elements.",
+      "practical_application":"Imagine you are styling a web page in CSS. You want to use CSS selectors to target specific HTML elements and apply styles to them.",
+     

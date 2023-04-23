@@ -1,0 +1,61 @@
+o manage component state.",
+      "practical_application":"Imagine you are building a counter component in a React application. You want to display the current count and provide buttons to increment and decrement the count.",
+      "step_by_step_solution":[
+         {
+            "step":"Import the useState hook from the React library.",
+            "code":"import React, { useState } from 'react';"
+         },
+         {
+            "step":"Create a new state variable to store the count.",
+            "code":"const [count, setCount] = useState(0);"
+         },
+         {
+            "step":"Add event handlers to the increment and decrement buttons to update the count state.",
+            "code":"<button onClick={() => setCount(count + 1)}>+</button>\n<button onClick={() => setCount(count - 1)}>-</button>"
+         },
+         {
+            "step":"Render the current count using the count state variable.",
+            "code":"<p>{count}</p>"
+         }
+      ]
+   },
+   {
+      "exercise_number":7,
+      "title":"Using React Props",
+      "objective":"To understand how to pass data between components using props.",
+      "practical_application":"Imagine you are building a navigation menu for a website. You want to pass data about the menu items from a parent component to a child component to render the menu items.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a new component that will receive the data as props.",
+            "code":"function MenuItem(props) {\n return (\n <div>\n <h2>{props.title}</h2>\n <p>{props.description}</p>\n </div>\n );\n}"
+         },
+         {
+            "step":"Pass the data to the child component using props.",
+            "code":"<MenuItem title='About' description='Learn about our company history.' />"
+         },
+         {
+            "step":"Access the data in the child component using props.",
+            "code":"function MenuItem(props) {\n return (\n <div>\n <h2>{props.title}</h2>\n <p>{props.description}</p>\n </div>\n );\n}"
+         }
+      ]
+   },
+   {
+      "exercise_number":8,
+      "title":"React Router",
+      "objective":"To understand how to use React Router to handle navigation in a React application.",
+      "practical_application":"Imagine you are building a multi-page web application in React. You want to enable users to navigate between different pages in your application without requiring a page refresh.",
+      "step_by_step_solution":[
+         {
+            "step":"Install React Router using npm.",
+            "code":"npm install react-router-dom"
+         },
+         {
+            "step":"Import the necessary components from React Router.",
+            "code":"import { BrowserRouter as Router, Route, Link } from 'react-router-dom';"
+         },
+         {
+            "step":"Wrap your application's top-level component with the Router component.",
+            "code":"<Router><App /></Router>"
+         },
+         {
+            "step":"Define routes for each page in 

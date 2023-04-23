@@ -1,0 +1,1307 @@
+[
+{
+"exercise_number": 1,
+"title": "Convert Promise-based Node.js code to async/await",
+"objective": "To understand the difference between Promise-based code and async/await in Node.js and learn how to convert Promise-based code to async/await.",
+"practical_application": "Imagine you are working on a Node.js project that utilizes Promises for handling asynchronous operations. You want to refactor the code to use async/await for better readability and maintainability.",
+"step_by_step_solution": [
+{
+"step": "Write a Promise-based function that reads a file using the 'fs' module.",
+"code": "const fs = require('fs').promises;\n\nfunction readFilePromise(filePath) {\n  return fs.readFile(filePath, 'utf8');\n}"
+},
+{
+"step": "Convert the Promise-based function to an async function using async/await.",
+"code": "const fs = require('fs').promises;\n\nasync function readFileAsync(filePath) {\n  try {\n    const data = await fs.readFile(filePath, 'utf8');\n    return data;\n  } catch (err) {\n    console.error('Error reading file:', err);\n  }\n}"
+}
+]
+},
+{
+"exercise_number": 2,
+"title": "Read multiple files in parallel using Node.js",
+"objective": "To learn how to read multiple files in parallel using Node.js.",
+"practical_application": "Imagine you have a Node.js application that needs to read multiple files concurrently to improve the performance and responsiveness of your application.",
+"step_by_step_solution": [
+{
+"step": "Import the necessary modules.",
+"code": "const fs = require('fs').promises;"
+},
+{
+"step": "Create an async function to read a file.",
+"code": "async function readFileAsync(filePath) {\n try {\n const data = await fs.readFile(filePath, 'utf8');\n return data;\n } catch (err) {\n console.error('Error reading file:', err);\n }\n}"
+},
+{
+"step": "Create an async function to read multiple files in parallel using Promise.all().",
+"code": "async function readFilesInParallel(filePaths) {\n try {\n const fileReadPromises = filePaths.map(filePath => readFileAsync(filePath));\n const fileContents = await Promise.all(fileReadPromises);\n return fileContents;\n } catch (err) {\n console.error('Error reading files:', err);\n }\n}"
+}
+]
+},
+{
+"exercise_number": 3,
+"title": "Read files sequentially in Node.js",
+"objective": "Learn how to read multiple files sequentially using async/await in Node.js.",
+"practical_application": "Imagine you are building a Node.js application that requires reading multiple configuration files in a specific order before starting the main application.",
+"step_by_step_solution": [
+{
+"step": "Import the necessary modules.",
+"code": "const fs = require('fs').promises;"
+},
+{
+"step": "Create an async function to read a file.",
+"code": "async function readFileAsync(filePath) {\n  try {\n    const data = await fs.readFile(filePath, 'utf8');\n    return data;\n  } catch (err) {\n    console.error('Error reading file:', err);\n  }\n}"
+},
+{
+"step": "Create an async function to read multiple files sequentially.",
+"code": "async function readFilesSequentially(filePaths) {\n  const fileContents = [];\n  for (const filePath of filePaths) {\n    const data = await readFileAsync(filePath);\n    fileContents.push(data);\n  }\n  return fileContents;\n}"
+}
+]
+},{
+"exercise_number": 4,
+"title": "Understanding async/await in forEach loops",
+"objective": "Learn why using async/await in forEach loops is not recommended and explore alternatives.",
+"practical_application": "Imagine you are working on a Node.js project that requires processing an array of items asynchronously using async/await. You want to understand the pitfalls of using async/await in forEach loops and learn better alternatives.",
+"step_by_step_solution": [
+{
+"step": "Write an async function that simulates an asynchronous operation with a setTimeout.",
+"code": "async function asyncOperation(item) {\n return new Promise(resolve => setTimeout(() => resolve(item * 2), 1000));\n}"
+},
+{
+"step": "Demonstrate the problem with using async/await in a forEach loop.",
+"code": "const items = [1, 2, 3, 4, 5];\n\nitems.forEach(async item => {\n const result = await asyncOperation(item);\n console.log(result);\n});\n\nconsole.log('Finished');"
+},
+{
+"step": "Use alternative methods such as 'for...of' loop or 'Promise.all()' to correctly handle async/await.",
+"code": "// Using for...of loop\n\nasync function processItems(items) {\n for (const item of items) {\n const result = await asyncOperation(item);\n console.log(result);\n }\n console.log('Finished');\n}\n\nprocessItems(items);\n\n// Using Promise.all()\n\nPromise.all(items.map(asyncOperation)).then(results => {\n results.forEach(result => console.log(result));\n console.log('Finished');\n});"
+}
+]
+},{
+"exercise_number": 5,
+"title": "Using module.exports, classes, and object literals in Node.js",
+"objective": "Learn when to use module.exports, classes, and object literals when defining Node.js modules.",
+"practical_application": "You are working on a Node.js project with multiple modules and want to understand the best approach for organizing and exporting your code.",
+"step_by_step_solution": [
+{
+"step": "Create a module using module.exports with a simple function.",
+"code": "// utils.js\n\nfunction add(a, b) {\n  return a + b;\n}\n\nmodule.exports = { add };"
+},
+{
+"step": "Create a module using a class.",
+"code": "// person.js\n\nclass Person {\n  constructor(name, age) {\n    this.name = name;\n    this.age = age;\n  }\n\n  introduce() {\n    console.log(`My name is ${this.name} and I am ${this.age} years old.`);\n  }\n}\n\nmodule.exports = Person;"
+},
+{
+"step": "Create a module using an object literal.",
+"code": "// config.js\n\nconst config = {\n  apiURL: 'https://api.example.com',\n  apiKey: 'your-api-key'\n};\n\nmodule.exports = config;"
+},
+{
+"step": "Import and use the modules in your main application file.",
+"code": "// index.js\n\nconst { add } = require('./utils');\nconst Person = require('./person');\nconst config = require('./config');\n\nconsole.log(add(2, 3));\n\nconst person = new Person('Alice', 30);\nperson.introduce();\n\nconsole.log(config.apiURL);"
+}
+]
+},{
+"exercise_number": 6,
+"title": "Converting callbacks to promises",
+"objective": "Learn how to convert an existing callback-based API to a promise-based API in Node.js.",
+"practical_application": "You are working on a Node.js project that uses an external library with a callback-based API. You want to convert the API to use promises for better readability and error handling.",
+"step_by_step_solution": [
+{
+"step": "Write a simple callback-based function.",
+"code": "function getUser(id, callback) {\n setTimeout(() => {\n callback(null, { id, name: 'John Doe' });\n }, 1000);\n}"
+},
+{
+"step": "Convert the callback-based function to a promise-based function.",
+"code": "function getUserPromise(id) {\n return new Promise((resolve, reject) => {\n getUser(id, (err, user) => {\n if (err) {\n reject(err);\n } else {\n resolve(user);\n }\n });\n });\n}"
+},
+{
+"step": "Use the promise-based function with async/await.",
+"code": "async function main() {\n try {\n const user = await getUserPromise(1);\n console.log(user);\n } catch (err) {\n console.error(err);\n }\n}\n\nmain();"
+}
+]
+},{
+"exercise_number": 7,
+"title": "Creating a basic HTTP server using the http module",
+"objective": "Learn how to create a basic HTTP server in Node.js using the built-in http module.",
+"practical_application": "You are building a simple Node.js application that needs to serve content over HTTP.",
+"step_by_step_solution": [
+{
+"step": "Import the http module.",
+"code": "const http = require('http');"
+},
+{
+"step": "Create a request handler function.",
+"code": "function requestHandler(req, res) {\n  res.writeHead(200, { 'Content-Type': 'text/plain' });\n  res.end('Hello, World!');\n}"
+},
+{
+"step": "Create the HTTP server and pass the request handler function.",
+"code": "const server = http.createServer(requestHandler);"
+},
+{
+"step": "Start listening for incoming requests on a specific port.",
+"code": "const port = 3000;\nserver.listen(port, () => {\n  console.log(`Server running at http://localhost:${port}`);\n});"
+}
+]
+},
+{
+"exercise_number": 8,
+"title": "Implementing a basic Express.js application",
+"objective": "Learn how to create a basic Express.js application in Node.js.",
+"practical_application": "You are building a Node.js web application and want to use the Express.js framework for better routing, middleware support, and easier HTTP response handling.",
+"step_by_step_solution": [
+{
+"step": "Install Express.js using npm.",
+"code": "npm install express"
+},
+{
+"step": "Import the Express.js module.",
+"code": "const express = require('express');"
+},
+{
+"step": "Create an instance of the Express.js application.",
+"code": "const app = express();"
+},
+{
+"step": "Define a route with a request handler function.",
+"code": "app.get('/', (req, res) => {\n res.send('Hello, World!');\n});"
+},
+{
+"step": "Start listening for incoming requests on a specific port.",
+"code": "const port = 3000;\napp.listen(port, () => {\n console.log(Server running at http://localhost:${port});\n});"
+}
+]
+},
+{
+"exercise_number": 9,
+"title": "Creating a simple REST API using Express.js",
+"objective": "Learn how to create a simple REST API using Express.js in Node.js.",
+"practical_application": "You are building a Node.js web application that needs to provide a REST API for clients to interact with your server-side data.",
+"step_by_step_solution": [
+{
+"step": "Install Express.js using npm.",
+"code": "npm install express"
+},
+{
+"step": "Import the Express.js module.",
+"code": "const express = require('express');"
+},
+{
+"step": "Create an instance of the Express.js application.",
+"code": "const app = express();"
+},
+{
+"step": "Add the necessary middleware to parse JSON request bodies.",
+"code": "app.use(express.json());"
+},
+{
+"step": "Define the API endpoints.",
+"code": "const users = [];\n\napp.get('/users', (req, res) => {\n  res.json(users);\n});\n\napp.post('/users', (req, res) => {\n  const newUser = req.body;\n  users.push(newUser);\n  res.status(201).json(newUser);\n});"
+},
+{
+"step": "Start listening for incoming requests on a specific port.",
+"code": "const port = 3000;\napp.listen(port, () => {\n  console.log(`Server running at http://localhost:${port}`);\n});"
+}
+]
+},
+{
+"exercise_number": 10,
+"title": "Implementing simple authentication with Passport.js",
+"objective": "Learn how to implement simple authentication in a Node.js application using Passport.js.",
+"practical_application": "You are building a Node.js web application that requires user authentication for accessing protected resources.",
+"step_by_step_solution": [
+{
+"step": "Install the necessary packages using npm.",
+"code": "npm install express passport passport-local express-session"
+},
+{
+"step": "Import the required modules.",
+"code": "const express = require('express');\nconst passport = require('passport');\nconst LocalStrategy = require('passport-local').Strategy;\nconst session = require('express-session');"
+},
+{
+"step": "Create an instance of the Express.js application.",
+"code": "const app = express();"
+},
+{
+"step": "Configure Passport.js.",
+"code": "passport.use(new LocalStrategy(\n  (username, password, done) => {\n    // Implement authentication logic here\n  }\n));\n\npassport.serializeUser((user, done) => {\n  done(null, user.id);\n});\n\npassport.deserializeUser((id, done) => {\n  // Implement deserialization logic here\n});"
+},
+{
+"step": "Configure the Express.js application to use Passport.js and sessions.",
+"code": "app.use(session({ secret: 'your-session-secret', resave: false, saveUninitialized: false }));\napp.use(passport.initialize());\napp.use(passport.session());"
+},
+{
+"step": "Define the authentication routes.",
+"code": "app.get('/login', (req, res) => {\n  // Render the login page\n});\n\napp.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/login' }));\n\napp.get('/logout', (req, res) => {\n  req.logout();\n  res.redirect('/login');\n});"
+},
+{
+"step": "Define a protected route and a middleware to check if the user is authenticated.",
+"code": "function isAuthenticated(req, res, next) {\n  if (req.isAuthenticated()) {\n    return next();\n  }\n  res.redirect('/login');\n}\n\napp.get('/protected', isAuthenticated, (req, res) => {\n  // Render the protected page\n});"
+},
+{
+"step": "Start listening for incoming requests on a specific port.",
+"code": "const port = 3000;\napp.listen(port, () => {\n  console.log(`Server running at http://localhost:${port}`);\n});"
+}
+]
+},
+{
+"exercise_number": 11,
+"title": "Creating a WebSocket server with Socket.IO",
+"objective": "Learn how to create a WebSocket server in a Node.js application using the Socket.IO library.",
+"practical_application": "You are building a Node.js application that requires real-time communication between the server and clients, such as a chat application or a live update dashboard.",
+"step_by_step_solution": [
+{
+"step": "Install the necessary packages using npm.",
+"code": "npm install express socket.io"
+},
+{
+"step": "Import the required modules.",
+"code": "const express = require('express');\nconst http = require('http');\nconst socketIO = require('socket.io');"
+},
+{
+"step": "Create an instance of the Express.js application and an HTTP server.",
+"code": "const app = express();\nconst server = http.createServer(app);"
+},
+{
+"step": "Create a Socket.IO instance attached to the HTTP server.",
+"code": "const io = socketIO(server);"
+},
+{
+"step": "Set up the Socket.IO connection event handler.",
+"code": "io.on('connection', (socket) => {\n  console.log('A user connected');\n\n  socket.on('disconnect', () => {\n    console.log('A user disconnected');\n  });\n});"
+},
+{
+"step": "Start listening for incoming requests on a specific port.",
+"code": "const port = 3000;\nserver.listen(port, () => {\n  console.log(`Server running at http://localhost:${port}`);\n});"
+}
+]
+},
+{
+"exercise_number": 12,
+"title": "Implementing a basic GraphQL API with Apollo Server",
+"objective": "Learn how to create a basic GraphQL API in a Node.js application using Apollo Server.",
+"practical_application": "You are building a Node.js application that needs to provide a flexible and efficient GraphQL API for clients to interact with your server-side data.",
+"step_by_step_solution": [
+{
+"step": "Install the necessary packages using npm.",
+"code": "npm install apollo-server graphql"
+},
+{
+"step": "Import the required modules.",
+"code": "const { ApolloServer, gql } = require('apollo-server');"
+},
+{
+"step": "Define the GraphQL schema.",
+"code": "const typeDefs = gql\n type Query {\n hello: String\n }\n;"
+},
+{
+"step": "Define the resolvers for the GraphQL schema.",
+"code": "const resolvers = {\n Query: {\n hello: () => 'Hello, World!'\n }\n};"
+},
+{
+"step": "Create an instance of the Apollo Server.",
+"code": "const server = new ApolloServer({ typeDefs, resolvers });"
+},
+{
+"step": "Start the Apollo Server.",
+"code": "server.listen().then(({ url }) => {\n console.log(Server ready at ${url});\n});"
+}
+]
+},
+{
+"exercise_number": 13,
+"title": "Implementing a simple CRUD API with Mongoose and MongoDB",
+"objective": "Learn how to create a simple CRUD API in a Node.js application using Mongoose to interact with a MongoDB database.",
+"practical_application": "You are building a Node.js application that needs to store and manage data using MongoDB as the database.",
+"step_by_step_solution": [
+{
+"step": "Install the necessary packages using npm.",
+"code": "npm install express mongoose"
+},
+{
+"step": "Import the required modules.",
+"code": "const express = require('express');\nconst mongoose = require('mongoose');"
+},
+{
+"step": "Connect to the MongoDB database using Mongoose.",
+"code": "mongoose.connect('mongodb://localhost:27017/myapp', { useNewUrlParser: true, useUnifiedTopology: true });"
+},
+{
+"step": "Create a Mongoose schema for the data.",
+"code": "const Schema = mongoose.Schema;\nconst ItemSchema = new Schema({\n  name: String,\n  description: String\n});"
+},
+{
+"step": "Create a Mongoose model based on the schema.",
+"code": "const Item = mongoose.model('Item', ItemSchema);"
+},
+{
+"step": "Create an instance of the Express.js application.",
+"code": "const app = express();"
+},
+{
+"step": "Add the necessary middleware to parse JSON request bodies.",
+"code": "app.use(express.json());"
+},
+{
+"step": "Define the API endpoints for CRUD operations.",
+"code": "app.get('/items', async (req, res) => {\n  const items = await Item.find();\n  res.json(items);\n});\n\napp.post('/items', async (req, res) => {\n  const newItem = new Item(req.body);\n  await newItem.save();\n  res.status(201).json(newItem);\n});\n\napp.put('/items/:id', async (req, res) => {\n  await Item.findByIdAndUpdate(req.params.id, req.body);\n  res.sendStatus(204);\n});\n\napp.delete('/items/:id', async (req, res) => {\n  await Item.findByIdAndDelete(req.params.id);\n  res.sendStatus(204);\n});"
+},
+{
+"step": "Start listening for incoming requests on a specific port.",
+"code": "const port = 3000;\napp.listen(port, () => {\n  console.log(`Server running at http://localhost:${port}`);\n});"
+}
+]
+},
+{
+"exercise_number": 14,
+"title": "Deploying a Node.js application to a cloud provider",
+"objective": "Learn how to deploy a Node.js application to a cloud provider, such as Heroku or AWS.",
+"practical_application": "You have built a Node.js application and want to deploy it to a cloud provider for public access.",
+"step_by_step_solution": [
+{
+"step": "Choose a cloud provider and create an account if you haven't already.",
+"code": ""
+},
+{
+"step": "Follow the provider's instructions for deploying a Node.js application. This typically involves installing their CLI tool, configuring the application, and running the deployment command.",
+"code": ""
+},
+{
+"step": "Update the application's code to listen on the port specified by the cloud provider, if necessary.",
+"code": "const port = process.env.PORT || 3000;\napp.listen(port, () => {\n  console.log(`Server running at http://localhost:${port}`);\n});"
+},
+{
+"step": "Ensure that your application has a start script in the package.json file.",
+"code": "{\n  \"scripts\": {\n    \"start\": \"node index.js\"\n  }\n}"
+},
+{
+"step": "Commit any changes made to the application's code and push them to the repository.",
+"code": "git add .\ngit commit -m 'Prepare for deployment'\ngit push"
+},
+{
+"step": "Follow the cloud provider's instructions to complete the deployment process.",
+"code": ""
+},
+{
+"step": "Test your deployed application by accessing its URL.",
+"code": ""
+}
+]
+},
+{
+"exercise_number": 15,
+"title": "Implementing unit tests in a Node.js application using Jest",
+"objective": "Learn how to write and run unit tests for a Node.js application using the Jest testing framework.",
+"practical_application": "You want to improve the reliability of your Node.js application by adding unit tests to ensure that its functions work as expected.",
+"step_by_step_solution": [
+{
+"step": "Install Jest as a development dependency using npm.",
+"code": "npm install --save-dev jest"
+},
+{
+"step": "Add a test script to the package.json file.",
+"code": "{\n  \"scripts\": {\n    \"test\": \"jest\"\n  }\n}"
+},
+{
+"step": "Create a test file with the same name as the module you want to test, but with a '.test.js' extension.",
+"code": "touch myModule.test.js"
+},
+{
+"step": "Import the module you want to test and the Jest testing functions.",
+"code": "const myModule = require('./myModule');\nconst { test, expect } = require('@jest/globals');"
+},
+{
+"step": "Write a test case for each function in the module, using the 'test' function and the Jest assertion functions, such as 'expect'.",
+"code": "test('myFunction should return the sum of two numbers', () => {\n  const result = myModule.myFunction(2, 3);\n  expect(result).toBe(5);\n});"
+},
+{
+"step": "Run the tests using the 'npm test' command.",
+"code": "npm test"
+},
+{
+"step": "Review the test results and fix any issues found.",
+"code": ""
+},
+{
+"step": "Continue adding test cases to cover all functions in your application.",
+"code": ""
+}
+]
+},
+{
+"exercise_number": 18,
+"title": "Working with Event Emitters",
+"objective": "Learn how to create and work with Event Emitters in Node.js.",
+"practical_application": "You are building a real-time application that requires different parts of your application to communicate via events.",
+"step_by_step_solution": [
+{
+"step": "Import the 'events' module.",
+"code": "const events = require('events');"
+},
+{
+"step": "Create an instance of the EventEmitter class.",
+"code": "const eventEmitter = new events.EventEmitter();"
+},
+{
+"step": "Create a custom event and attach a listener function.",
+"code": "eventEmitter.on('myEvent', (message) => {\n  console.log(`Message: ${message}`);\n});"
+},
+{
+"step": "Emit the custom event with a message.",
+"code": "eventEmitter.emit('myEvent', 'Hello, world!');"
+},
+{
+"step": "Execute the script and observe the output.",
+"code": "node eventEmitterExample.js"
+}
+]
+},
+{
+"exercise_number": 19,
+"title": "Reading and Writing Files in Node.js",
+"objective": "Learn how to read and write files in Node.js using the built-in 'fs' module.",
+"practical_application": "You are building an application that needs to read and write data to the file system.",
+"step_by_step_solution": [
+{
+"step": "Import the 'fs' module.",
+"code": "const fs = require('fs');"
+},
+{
+"step": "Write data to a file using the writeFile method.",
+"code": "fs.writeFile('output.txt', 'Hello, world!', (err) => {\n  if (err) throw err;\n  console.log('File has been written.');\n});"
+},
+{
+"step": "Read data from a file using the readFile method.",
+"code": "fs.readFile('output.txt', 'utf8', (err, data) => {\n  if (err) throw err;\n  console.log(`File content: ${data}`);\n});"
+},
+{
+"step": "Execute the script and observe the output.",
+"code": "node fileReadWriteExample.js"
+}
+]
+},
+{
+"exercise_number": 20,
+"title": "Working with Streams in Node.js",
+"objective": "Learn how to work with Streams in Node.js to efficiently process large amounts of data.",
+"practical_application": "You are building an application that needs to handle large files or data streams, and you want to process the data efficiently.",
+"step_by_step_solution": [
+{
+"step": "Import the 'fs' module.",
+"code": "const fs = require('fs');"
+},
+{
+"step": "Create a readable stream from a file.",
+"code": "const readableStream = fs.createReadStream('largeFile.txt', 'utf8');"
+},
+{
+"step": "Handle the 'data' event to process chunks of data from the stream.",
+"code": "readableStream.on('data', (chunk) => {\n  console.log(`Received ${chunk.length} bytes of data.`);\n});"
+},
+{
+"step": "Handle the 'end' event to know when the stream has finished.",
+"code": "readableStream.on('end', () => {\n  console.log('Stream finished.');\n});"
+},
+{
+"step": "Execute the script and observe the output.",
+"code": "node streamExample.js"
+}
+]
+},
+
+{
+"exercise_number": 21,
+"title": "Creating a REST API using Express.js",
+"objective": "Learn how to create a basic REST API using Express.js.",
+"practical_application": "You are building a web application and need to create a REST API for the client-side to interact with.",
+"step_by_step_solution": [
+{
+"step": "Install Express.js using npm.",
+"code": "npm install express"
+},
+{
+"step": "Import the 'express' module.",
+"code": "const express = require('express');"
+},
+{
+"step": "Create an instance of the Express app.",
+"code": "const app = express();"
+},
+{
+"step": "Define a route for a GET request.",
+"code": "app.get('/api/data', (req, res) => {\n  res.json({ message: 'Hello, world!' });\n});"
+},
+{
+"step": "Start the server by listening on a specific port.",
+"code": "const port = 3000;\napp.listen(port, () => {\n  console.log(`Server running at http://localhost:${port}`);\n});"
+}
+]
+},
+{
+"exercise_number": 22,
+"title": "Implementing Middleware in Express.js",
+"objective": "Learn how to create and use middleware in an Express.js application.",
+"practical_application": "You are building a web application and need to add middleware for logging, authentication, or other tasks.",
+"step_by_step_solution": [
+{
+"step": "Create a middleware function.",
+"code": "const loggerMiddleware = (req, res, next) => {\n  console.log(`${req.method} ${req.url}`);\n  next();\n};"
+},
+{
+"step": "Use the middleware in your Express app.",
+"code": "app.use(loggerMiddleware);"
+},
+{
+"step": "Add a route to test the middleware.",
+"code": "app.get('/', (req, res) => {\n  res.send('Hello, world!');\n});"
+},
+{
+"step": "Start the server and test the middleware by making a request.",
+"code": "const port = 3000;\napp.listen(port, () => {\n  console.log(`Server running at http://localhost:${port}`);\n});"
+}
+]
+},
+{
+"exercise_number": 24,
+"title": "Implementing Basic Authentication in Express.js",
+"objective": "Learn how to implement basic authentication in an Express.js application.",
+"practical_application": "You are building a web application and need to secure certain routes with basic authentication.",
+"step_by_step_solution": [
+{
+"step": "Create an authentication middleware function.",
+"code": "const basicAuthMiddleware = (req, res, next) => {\n  const authHeader = req.headers.authorization;\n\n  if (!authHeader) {\n    res.status(401).send('Authentication required.');\n    return;\n  }\n\n  const [username, password] = Buffer.from(authHeader.split(' ')[1], 'base64').toString().split(':');\n\n  if (username === 'user' && password === 'password') {\n    next();\n  } else {\n    res.status(401).send('Invalid credentials.');\n  }\n};"
+},
+{
+"step": "Use the authentication middleware on a protected route.",
+"code": "app.get('/protected', basicAuthMiddleware, (req, res) => {\n  res.send('Protected route.');\n});"
+},
+{
+"step": "Start the server and test the authentication by making a request to the protected route.",
+"code": "const port = 3000;\napp.listen(port, () => {\n  console.log(`Server running at http://localhost:${port}`);\n});"
+}
+]
+},
+{
+"exercise_number": 25,
+"title": "Creating a simple TCP server using the Net module",
+"objective": "Learn how to create a basic TCP server using the built-in 'net' module in Node.js.",
+"practical_application": "You want to create a simple TCP server that listens on a specific port and responds to incoming TCP connections.",
+"step_by_step_solution": [
+{
+"step": "Import the 'net' module.",
+"code": "const net = require('net');"
+},
+{
+"step": "Create a server using the 'createServer' method.",
+"code": "const server = net.createServer((socket) => {\n  console.log('Client connected.');\n  socket.write('Hello from the TCP server!\\n');\n\n  socket.on('data', (data) => {\n    console.log(`Data received: ${data}`);\n  });\n\n  socket.on('end', () => {\n    console.log('Client disconnected.');\n  });\n});"
+},
+{
+"step": "Specify a port for the server to listen on.",
+"code": "const port = 3000;"
+},
+{
+"step": "Start the server using the 'listen' method.",
+"code": "server.listen(port, () => {\n  console.log(`Server running at http://localhost:${port}/`);\n});"
+},
+{
+"step": "Test the server by connecting to it using a TCP client, such as 'telnet' or 'nc'.",
+"code": "telnet localhost 3000"
+}
+]
+},
+{
+"exercise_number": 26,
+"title": "Managing child processes in Node.js",
+"objective": "Learn how to create and manage child processes in Node.js using the 'child_process' module.",
+"practical_application": "You are building an application that needs to execute external commands or scripts and manage their input/output.",
+"step_by_step_solution": [
+{
+"step": "Import the 'child_process' module.",
+"code": "const { exec } = require('child_process');"
+},
+{
+"step": "Execute an external command using the 'exec' method.",
+"code": "exec('ls', (error, stdout, stderr) => {\n  if (error) {\n    console.error(`exec error: ${error}`);\n    return;\n  }\n  console.log(`stdout: ${stdout}`);\n  console.error(`stderr: ${stderr}`);\n});"
+},
+{
+"step": "Handle the output and errors from the executed command.",
+"code": "/* See the 'exec' method example above. */"
+},
+{
+"step": "Execute the script and observe the output.",
+"code": "node childProcessExample.js"
+}
+]
+},
+{
+"exercise_number": 27,
+"title": "Implementing a basic WebSocket server using the 'ws' library",
+"objective": "Learn how to create a basic WebSocket server in Node.js using the 'ws' library.",
+"practical_application": "You are building a real-time application that requires bidirectional communication between the server and clients.",
+"step_by_step_solution": [
+{
+"step": "Install the 'ws' library using npm.",
+"code": "npm install ws"
+},
+{
+"step": "Import the 'ws' library.",
+"code": "const WebSocket = require('ws');"
+},
+{
+"step": "Create a WebSocket server instance.",
+"code": "const server = new WebSocket.Server({ port: 8080 });"
+},
+{
+"step": "Add a listener for the 'connection' event.",
+"code": "server.on('connection', (socket) => {\n  console.log('Client connected.');\n\n  socket.on('message', (message) => {\n    console.log(`Received: ${message}`);\n  });\n\n  socket.send('Welcome to the WebSocket server.');\n});"
+},
+{
+"step": "Test the server using a WebSocket client, such as a browser or a Node.js script.",
+"code": "/* WebSocket client example */"
+}
+]
+},
+{
+"exercise_number": 27,
+"title": "Implementing a basic WebSocket server using the 'ws' library",
+"objective": "Learn how to create a basic WebSocket server in Node.js using the 'ws' library.",
+"practical_application": "You are building a real-time application that requires bidirectional communication between the server and clients.",
+"step_by_step_solution": [
+{
+"step": "Install the 'ws' library using npm.",
+"code": "npm install ws"
+},
+{
+"step": "Import the 'ws' library.",
+"code": "const WebSocket = require('ws');"
+},
+{
+"step": "Create a WebSocket server instance.",
+"code": "const server = new WebSocket.Server({ port: 8080 });"
+},
+{
+"step": "Add a listener for the 'connection' event.",
+"code": "server.on('connection', (socket) => {\n  console.log('Client connected.');\n\n  socket.on('message', (message) => {\n    console.log(`Received: ${message}`);\n  });\n\n  socket.send('Welcome to the WebSocket server.');\n});"
+},
+{
+"step": "Test the server using a WebSocket client, such as a browser or a Node.js script.",
+"code": "/* WebSocket client example */"
+}
+]
+},      
+{
+"exercise_number": 28,
+"title": "Creating a simple command-line interface (CLI) in Node.js",
+"objective": "Learn how to create a basic command-line interface (CLI) in Node.js.",
+"practical_application": "You are building a tool or utility that needs to be run from the command line and accept user input.",
+"step_by_step_solution": [
+{
+"step": "Import the 'readline' module.",
+"code": "const readline = require('readline');"
+},
+{
+"step": "Create a readline interface.",
+"code": "const rl = readline.createInterface({\n  input: process.stdin,\n  output: process.stdout\n});"
+},
+{
+"step": "Prompt the user for input using the 'question' method.",
+"code": "rl.question('What is your name? ', (answer) => {\n  console.log(`Hello, ${answer}!`);\n  rl.close();\n});"
+},
+{
+"step": "Execute the script and observe the output.",
+"code": "node cliExample.js"
+}
+]
+},
+{
+"exercise_number": 29,
+"title": "Using Promises in Node.js",
+"objective": "Learn how to use Promises to handle asynchronous operations in Node.js.",
+"practical_application": "You are building an application that relies on asynchronous operations, and you want to handle the results and errors in a more manageable way.",
+"step_by_step_solution": [
+{
+"step": "Create a function that returns a Promise.",
+"code": "function fetchData() {\n  return new Promise((resolve, reject) => {\n    setTimeout(() => {\n      resolve('Data fetched.');\n    }, 2000);\n  });\n}"
+},
+{
+"step": "Use the 'then' method to handle the resolved value of the Promise.",
+"code": "fetchData().then((result) => {\n  console.log(result);\n});"
+},
+{
+"step": "Use the 'catch' method to handle any errors that may occur.",
+"code": "fetchData().then((result) => {\n  console.log(result);\n}).catch((error) => {\n  console.error(`Error: ${error}`);\n});"
+},
+{
+"step": "Execute the script and observe the output.",
+"code": "node promiseExample.js"
+}
+]
+},
+{
+"exercise_number": 30,
+"title": "Using async/await with Promises in Node.js",
+"objective": "Learn how to use the async/await syntax to simplify working with Promises in Node.js.",
+"practical_application": "You are building an application that relies on asynchronous operations, and you want to write more readable and maintainable code.",
+"step_by_step_solution": [
+{
+"step": "Create a function that returns a Promise.",
+"code": "function fetchData() {\n  return new Promise((resolve, reject) => {\n    setTimeout(() => {\n      resolve('Data fetched.');\n    }, 2000);\n  });\n}"
+},
+{
+"step": "Create an async function to handle the Promise using the 'await' keyword.",
+"code": "async function processData() {\n  try {\n    const result = await fetchData();\n    console.log(result);\n  } catch (error) {\n    console.error(`Error: ${error}`);\n  }\n}"
+},
+{
+"step": "Call the async function to execute the Promise.",
+"code": "processData();"
+},
+{
+"step": "Execute the script and observe the output.",
+"code": "node asyncAwaitExample.js"
+}
+]
+},
+{
+"exercise_number": 31,
+"title": "Implementing a basic HTTP server using the 'http' module",
+"objective": "Learn how to create a basic HTTP server in Node.js using the built-in 'http' module.",
+"practical_application": "You are building a web application and need to create a simple HTTP server to handle incoming requests and send responses.",
+"step_by_step_solution": [
+{
+"step": "Import the 'http' module.",
+"code": "const http = require('http');"
+},
+{
+"step": "Create an HTTP server using the 'createServer' method.",
+"code": "const server = http.createServer((req, res) => {\n  res.writeHead(200, { 'Content-Type': 'text/plain' });\n  res.end('Hello, World!\\n');\n});"
+},
+{
+"step": "Specify a port for the server to listen on.",
+"code": "const port = 3000;"
+},
+{
+"step": "Start the server using the 'listen' method.",
+"code": "server.listen(port, () => {\n  console.log(`Server running at http://localhost:${port}/`);\n});"
+},
+{
+"step": "Test the server by accessing it through a web browser or using a tool like 'curl'.",
+"code": "curl http://localhost:3000"
+}
+]
+},
+{
+"exercise_number": 32,
+"title": "Handling HTTP requests and routing in a Node.js server",
+"objective": "Learn how to handle different HTTP requests and implement basic routing in a Node.js server.",
+"practical_application": "You are building a web application and need to handle different types of HTTP requests and route them to the appropriate handler functions.",
+"step_by_step_solution": [
+{
+"step": "Import the 'http' and 'url' modules.",
+"code": "const http = require('http');\nconst url = require('url');"
+},
+{
+"step": "Create a function to handle incoming requests and route them to the appropriate handler functions.",
+"code": "const requestHandler = (req, res) => {\n  const parsedUrl = url.parse(req.url, true);\n  const path = parsedUrl.pathname;\n\n  if (path === '/') {\n    handleRoot(req, res);\n  } else if (path === '/about') {\n    handleAbout(req, res);\n  } else {\n    handleNotFound(req, res);\n  }\n};"
+},
+{
+"step": "Create handler functions for different routes.",
+"code": "function handleRoot(req, res) {\n  res.writeHead(200, { 'Content-Type': 'text/plain' });\n  res.end('Welcome to the homepage!\\n');\n}\n\nfunction handleAbout(req, res) {\n  res.writeHead(200, { 'Content-Type': 'text/plain' });\n  res.end('Welcome to the about page!\\n');\n}\n\nfunction handleNotFound(req, res) {\n  res.writeHead(404, { 'Content-Type': 'text/plain' });\n  res.end('Page not found.\\n');\n}"
+},
+{
+"step": "Create an HTTP server using the 'createServer' method and the requestHandler function.",
+"code": "const server = http.createServer(requestHandler);"
+},
+{
+"step": "Specify a port for the server to listen on.",
+"code": "const port = 3000;"
+},
+{
+"step": "Start the server using the 'listen' method.",
+"code": "server.listen(port, () => {\n  console.log(`Server running at http://localhost:${port}/`);\n});"
+},
+{
+"step": "Test the server by accessing different routes through a web browser or using a tool like 'curl'.",
+"code": "curl http://localhost:3000\ncurl http://localhost:3000/about\ncurl http://localhost:3000/notfound"
+}
+]
+},
+{
+"exercise_number": 33,
+"title": "Implementing a basic Express server",
+"objective": "Learn how to create a basic web server using the popular Express framework in Node.js.",
+"practical_application": "You are building a web application and want to use a more feature-rich and widely used framework to handle HTTP requests and routing.",
+"step_by_step_solution": [
+{
+"step": "Install the 'express' package using npm.",
+"code": "npm install express"
+},
+{
+"step": "Import the 'express' package.",
+"code": "const express = require('express');"
+},
+{
+"step": "Create an instance of the Express application.",
+"code": "const app = express();"
+},
+{
+"step": "Define routes for the application.",
+"code": "app.get('/', (req, res) => {\n  res.send('Welcome to the homepage!');\n});\n\napp.get('/about', (req, res) => {\n  res.send('Welcome to the about page!');\n});"
+},
+{
+"step": "Specify a port for the server to listen on.",
+"code": "const port = 3000;"
+},
+{
+"step": "Start the server using the 'listen' method.",
+"code": "app.listen(port, () => {\n  console.log(`Server running at http://localhost:${port}/`);\n});"
+},
+{
+"step": "Test the server by accessing different routes through a web browser or using a tool like 'curl'.",
+"code": "curl http://localhost:3000\ncurl http://localhost:3000/about"
+}
+]
+},
+{
+"exercise_number": 34,
+"title": "Implementing middleware in Express",
+"objective": "Learn how to implement and use middleware functions in an Express application.",
+"practical_application": "You are building a web application and need to perform specific actions, such as logging or authentication, for incoming requests before they are handled by the route handlers.",
+"step_by_step_solution": [
+{
+"step": "Import the 'express' package.",
+"code": "const express = require('express');"
+},
+{
+"step": "Create an instance of the Express application.",
+"code": "const app = express();"
+},
+{
+"step": "Define a middleware function to log the request method and URL.",
+"code": "const requestLogger = (req, res, next) => {\n  console.log(`${req.method} ${req.url}`);\n  next();\n};"
+},
+{
+"step": "Use the middleware function in the application using the 'use' method.",
+"code": "app.use(requestLogger);"
+},
+{
+"step": "Define routes for the application.",
+"code": "app.get('/', (req, res) => {\n  res.send('Welcome to the homepage!');\n});\n\napp.get('/about', (req, res) => {\n  res.send('Welcome to the about page!');\n});"
+},
+{
+"step": "Specify a port for the server to listen on.",
+"code": "const port = 3000;"
+},
+{
+"step": "Start the server using the 'listen' method.",
+"code": "app.listen(port, () => {\n  console.log(`Server running at http://localhost:${port}/`);\n});"
+},
+{
+"step": "Test the server by accessing different routes through a web browser or using a tool like 'curl'. Observe the logged request method and URL in the console.",
+"code": "curl http://localhost:3000\ncurl http://localhost:3000/about"
+}
+]
+},
+{
+"exercise_number": 35,
+"title": "Serving static files in Express",
+"objective": "Learn how to serve static files, such as HTML, CSS, and JavaScript, in an Express application.",
+"practical_application": "You are building a web application and need to serve static assets like images, stylesheets, and scripts to the clients.",
+"step_by_step_solution": [
+{
+"step": "Import the 'express' package and the 'path' module.",
+"code": "const express = require('express');\nconst path = require('path');"
+},
+{
+"step": "Create an instance of the Express application.",
+"code": "const app = express();"
+},
+{
+"step": "Use the 'express.static' middleware to serve static files from a specified directory.",
+"code": "app.use(express.static(path.join(__dirname, 'public')));"
+},
+{
+"step": "Create a 'public' directory in your project and add some static files, such as an 'index.html', 'style.css', and 'script.js' file.",
+"code": "/* Create the public directory and add the static files */"
+},
+{
+"step": "Specify a port for the server to listen on.",
+"code": "const port = 3000;"
+},
+{
+"step": "Start the server using the 'listen' method.",
+"code": "app.listen(port, () => {\n  console.log(`Server running at http://localhost:${port}/`);\n});"
+},
+{
+"step": "Test the server by accessing the static files through a web browser or using a tool like 'curl'.",
+"code": "curl http://localhost:3000/index.html\ncurl http://localhost:3000/style.css\ncurl http://localhost:3000/script.js"
+}
+]
+},
+{
+"exercise_number": 36,
+"title": "Basic user authentication in Express",
+"objective": "Learn how to implement basic user authentication in an Express application.",
+"practical_application": "You are building a web application and need to protect certain routes from unauthorized access.",
+"step_by_step_solution": [
+{
+"step": "Import the 'express' package.",
+"code": "const express = require('express');"
+},
+{
+"step": "Create an instance of the Express application.",
+"code": "const app = express();"
+},
+{
+"step": "Define a middleware function to perform basic authentication.",
+"code": "const basicAuth = (req, res, next) => {\n  const authHeader = req.headers.authorization;\n\n  if (authHeader) {\n    const base64Credentials = authHeader.split(' ')[1];\n    const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii').split(':');\n    const [username, password] = credentials;\n\n    if (username === 'admin' && password === 'secret') {\n      return next();\n    }\n  }\n\n  res.setHeader('WWW-Authenticate', 'Basic');\n  res.status(401).send('Authentication required');\n};"
+},
+{
+"step": "Define a protected route and use the basicAuth middleware to protect it.",
+"code": "app.get('/protected', basicAuth, (req, res) => {\n  res.send('Welcome to the protected page!');\n});"
+},
+{
+"step": "Define a public route.",
+"code": "app.get('/', (req, res) => {\n  res.send('Welcome to the public page!');\n});"
+},
+{
+"step": "Specify a port for the server to listen on.",
+"code": "const port = 3000;"
+},
+{
+"step": "Start the server using the 'listen' method.",
+"code": "app.listen(port, () => {\n  console.log(`Server running at http://localhost:${port}/`);\n});"
+},
+{
+"step": "Test the server by accessing the protected route using a web browser or a tool like 'curl'.",
+"code": "curl -u admin:secret http://localhost:3000/protected\ncurl http://localhost:3000/protected"
+}
+]
+},
+{
+"exercise_number": 37,
+"title": "Implementing error handling in Express",
+"objective": "Learn how to handle errors in an Express application.",
+"practical_application": "You are building a web application and need to catch and handle errors that may occur during the processing of requests.",
+"step_by_step_solution": [
+{
+"step": "Import the 'express' package.",
+"code": "const express = require('express');"
+},
+{
+"step": "Create an instance of the Express application.",
+"code": "const app = express();"
+},
+{
+"step": "Define a route that may throw an error.",
+"code": "app.get('/error', (req, res, next) => {\n  try {\n    throw new Error('Something went wrong!');\n  } catch (err) {\n    next(err);\n  }\n});"
+},
+{
+"step": "Define an error handling middleware function.",
+"code": "const errorHandler = (err, req, res, next) => {\n  console.error(err.stack);\n  res.status(500).send('Internal Server Error');\n};"
+},
+{
+"step": "Use the error handling middleware in the application.",
+"code": "app.use(errorHandler);"
+},
+{
+"step": "Specify a port for the server to listen on.",
+"code": "const port = 3000;"
+},
+{
+"step": "Start the server using the 'listen' method.",
+"code": "app.listen(port, () => {\n  console.log(`Server running at http://localhost:${port}/`);\n});"
+},
+{
+"step": "Test the server by accessing the '/error' route using a web browser or a tool like 'curl'. Observe the error message and the logged error stack trace in the console.",
+"code": "curl http://localhost:3000/error"
+}
+]
+},
+{
+"exercise_number": 38,
+"title": "Creating a simple RESTful API with Express",
+"objective": "Learn how to create a simple RESTful API using Express.",
+"practical_application": "You are building a web application and need to expose a RESTful API for clients to interact with your data.",
+"step_by_step_solution": [
+{
+"step": "Import the 'express' package.",
+"code": "const express = require('express');"
+},
+{
+"step": "Create an instance of the Express application.",
+"code": "const app = express();"
+},
+{
+"step": "Use the 'express.json()' middleware to parse JSON request bodies.",
+"code": "app.use(express.json());"
+},
+{
+"step": "Define an array of sample data to use as a simple data store.",
+"code": "const items = [{ id: 1, name: 'Item 1' }, { id: 2, name: 'Item 2' }];"
+},
+{
+"step": "Define a route to handle GET requests to the '/items' endpoint.",
+"code": "app.get('/items', (req, res) => {\n  res.json(items);\n});"
+},
+{
+"step": "Define a route to handle POST requests to the '/items' endpoint.",
+"code": "app.post('/items', (req, res) => {\n  const newItem = { id: items.length + 1, name: req.body.name };\n  items.push(newItem);\n  res.status(201).json(newItem);\n});"
+},
+{
+"step": "Define a route to handle PUT requests to the '/items/:id' endpoint.",
+"code": "app.put('/items/:id', (req, res) => {\n  const item = items.find(i => i.id === parseInt(req.params.id));\n  if (!item) return res.status(404).send('Item not found');\n\n  item.name = req.body.name;\n  res.json(item);\n});"
+},
+{
+"step": "Define a route to handle DELETE requests to the '/items/:id' endpoint.",
+"code": "app.delete('/items/:id', (req, res) => {\n  const itemIndex = items.findIndex(i => i.id === parseInt(req.params.id));\n  if (itemIndex === -1) return res.status(404).send('Item not found');\n\n  const deletedItem = items.splice(itemIndex, 1);\n  res.json(deletedItem);\n});"
+},
+{
+"step": "Specify a port for the server to listen on.",
+"code": "const port = 3000;"
+},
+{
+"step": "Start the server using the 'listen' method.",
+"code": "app.listen(port, () => {\n  console.log(`Server running at http://localhost:${port}/`);\n});"
+},
+{
+"step": "Test the API using a tool like Postman or 'curl'.",
+"code": "/* Test the API using Postman or 'curl' */"
+}
+]
+},
+{
+"exercise_number": 39,
+"title": "Working with Assert Module in Node.js",
+"objective": "To understand the purpose and usage of the assert module in Node.js.",
+"practical_application": "Imagine you are writing unit tests for a Node.js application and want to use the assert module to write assertions.",
+"step_by_step_solution": [
+{
+"step": "Import the assert module into your test file.",
+"code": "const assert = require('assert');"
+},
+{
+"step": "Write a test case and use the assert module to make an assertion.",
+"code": "describe('myTest', () => {\n it('should return true', () => {\n const result = true;\n assert.strictEqual(result, true);\n });\n});"
+}
+]
+},
+{
+"exercise_number": 40,
+"title": "Global Scope in Node.js",
+"objective": "To understand the difference between the global scope in Node.js and the browser.",
+"practical_application": "Imagine you are developing a Node.js application and need to declare a global variable that can be accessed across all modules in your application.",
+"step_by_step_solution": [
+{
+"step": "Declare a global variable in a Node.js file.",
+"code": "global.myVar = 'Hello, world!';"
+},
+{
+"step": "In another module, access the global variable.",
+"code": "console.log(global.myVar);"
+}
+]
+},
+{
+"exercise_number": 41,
+"title": "Usage of Global Variables in Node.js",
+"objective": "To understand when to use global variables in Node.js.",
+"practical_application": "Imagine you are developing a Node.js application and need to store configuration settings that will be accessed across multiple modules in your application.",
+"step_by_step_solution": [
+{
+"step": "Create a configuration file that exports an object containing your settings.",
+"code": "module.exports = {\n port: 3000,\n databaseUrl: 'mongodb://localhost/mydb',\n secretKey: 'mysecretkey'\n};"
+},
+{
+"step": "In each module that needs access to the configuration settings, require the configuration file and access the properties on the exported object.",
+"code": "const config = require('./config');\n\nconsole.log(config.port);\nconsole.log(config.databaseUrl);\nconsole.log(config.secretKey);"
+}
+]
+},
+{
+"exercise_number": 42,
+"title": "Differences Between Cluster and Worker Threads Packages in Node.js",
+"objective": "To understand the differences between the cluster and worker_threads packages in Node.js.",
+"practical_application": "Imagine you are developing a Node.js application that needs to take advantage of multi-core processing.",
+"step_by_step_solution": [
+{
+"step": "Require the cluster or worker_threads module in your application.",
+"code": "// Using the cluster module\nconst cluster = require('cluster');\n\n// Using the worker_threads module\nconst { Worker } = require('worker_threads');"
+},
+{
+"step": "Use the cluster module to create child processes that can share the same port and distribute the incoming requests among themselves.",
+"code": "// Create a cluster of worker processes\nif (cluster.isMaster) {\n const numWorkers = require('os').cpus().length;\n for (let i = 0; i < numWorkers; i++) {\n cluster.fork();\n }\n} else {\n // Start the worker process\n require('./server');\n}"
+},
+{
+"step": "Use the worker_threads module to create separate threads that can perform computationally intensive tasks in parallel.",
+"code": "// Create a worker thread\nconst { Worker } = require('worker_threads');\n\nconst worker = new Worker('./worker.js');\n\nworker.on('message', (result) => {\n console.log(result);\n});\n\nworker.postMessage({ data: 'Hello, worker!' });"
+}
+]
+},
+{
+"exercise_number": 43,
+"title": "Difference Between res.send() and return res.send() in Express.js",
+"objective": "To understand the difference between using res.send() and return res.send() in Express.js.",
+"practical_application": "Imagine you are developing an Express.js application and need to understand how to correctly send a response to the client.",
+"step_by_step_solution": [
+{
+"step": "Use res.send() to send a response to the client without stopping the execution of the function.",
+"code": "app.get('/', (req, res) => {\n res.send('Hello, world!');\n console.log('This will still execute.');\n});"
+},
+{
+"step": "Use return res.send() to send a response to the client and stop the execution of the function.",
+"code": "app.get('/', (req, res) => {\n return res.send('Hello, world!');\n console.log('This will not execute.');\n});"
+}
+]
+},
+{
+    "exercise_number": 44,
+    "title": "express.json() and express.urlencoded() in Express.js",
+    "objective": "To understand the purpose of using express.json() and express.urlencoded() in an Express.js application.",
+    "practical_application": "Imagine you are building an Express.js application and need to handle incoming data from the client.",
+    "step_by_step_solution": [
+    {
+    "step": "Use express.json() middleware to parse incoming JSON data.",
+    "code": "const express = require('express');\nconst app = express();\n\napp.use(express.json());\n\napp.post('/', (req, res) => {\n console.log(req.body);\n res.send('Data received.');\n});"
+    },
+    {
+    "step": "Use express.urlencoded() middleware to parse incoming form data.",
+    "code": "const express = require('express');\nconst app = express();\n\napp.use(express.urlencoded({ extended: true }));\n\napp.post('/', (req, res) => {\n console.log(req.body);\n res.send('Data received.');\n});"
+    }
+    ]
+    },
+    {
+        "exercise_number": 45,
+        "title": "Graceful Shutdown of a Node.js Server",
+        "objective": "To understand how to gracefully shut down a Node.js server.",
+        "practical_application": "Imagine you are deploying a Node.js application and need to ensure that the server can be shut down gracefully.",
+        "step_by_step_solution": [
+        {
+        "step": "Create a server instance and handle the SIGINT and SIGTERM signals to gracefully shut down the server.",
+        "code": "const express = require('express');\nconst app = express();\n\nconst server = app.listen(3000, () => {\n console.log('Server started.');\n});\n\nprocess.on('SIGINT', () => {\n console.log('Shutting down server...');\n server.close(() => {\n console.log('Server shut down.');\n process.exit(0);\n });\n});\n\nprocess.on('SIGTERM', () => {\n console.log('Shutting down server...');\n server.close(() => {\n console.log('Server shut down.');\n process.exit(0);\n });\n});"
+        }
+        ]
+        },
+        {
+            "exercise_number": 46,
+            "title": "Using Buffer to Handle Binary Data in Node.js",
+            "objective": "To understand the purpose of using Buffer to handle binary data in Node.js.",
+            "practical_application": "Imagine you are working with an application that requires handling binary data, such as images or audio files, and need to convert this data to a format that can be used by the application.",
+            "step_by_step_solution": [
+            {
+            "step": "Create a new Buffer from a string of binary data.",
+            "code": "const binaryData = '01010101';\nconst buffer = Buffer.from(binaryData, 'binary');"
+            },
+            {
+            "step": "Convert a Buffer to a string of binary data.",
+            "code": "const buffer = Buffer.from('Hello, world!', 'utf8');\nconst binaryData = buffer.toString('binary');"
+            },
+            {
+            "step": "Convert a Buffer to a Base64-encoded string.",
+            "code": "const buffer = Buffer.from('Hello, world!', 'utf8');\nconst base64EncodedData = buffer.toString('base64');"
+            }
+            ]
+            },
+            {
+                "exercise_number": 47,
+                "title": "Working with the V8 Engine in Node.js",
+                "objective": "To understand how the V8 engine works in Node.js.",
+                "practical_application": "Imagine you are working on a Node.js project and need to optimize the performance of your code by understanding how the V8 engine works.",
+                "step_by_step_solution": [
+                {
+                "step": "Understand the basics of how the V8 engine works.",
+                "code": "The V8 engine is a JavaScript engine that powers Node.js and Google Chrome. It compiles JavaScript code into machine code that can be executed by a computer's CPU. The V8 engine uses Just-In-Time (JIT) compilation to dynamically optimize code at runtime, making it faster and more efficient."
+                },
+                {
+                "step": "Learn about some of the key features of the V8 engine.",
+                "code": "The V8 engine includes several key features that contribute to its performance, such as a high-performance garbage collector, optimized object representation, and a fast runtime environment. It also supports advanced features like native code extensions and memory profiling tools."
+                },
+                {
+                "step": "Optimize your Node.js code for the V8 engine.",
+                "code": "To optimize your Node.js code for the V8 engine, you should focus on reducing memory usage, minimizing object creation, and optimizing function calls. You can also use performance profiling tools to identify bottlenecks in your code and optimize accordingly."
+                }
+                ]
+                },
+                {
+                    "exercise_number": 48,
+                    "title": "Scaling Node.js Applications",
+                    "objective": "To understand how to scale Node.js applications to handle increasing traffic and workload.",
+                    "practical_application": "Imagine you are building a web application with Node.js that needs to be able to handle a large number of users and requests. You want to ensure that your application can scale efficiently as traffic and workload increase.",
+                    "step_by_step_solution": [
+                    {
+                    "step": "Use clustering to take advantage of multiple CPU cores.",
+                    "code": "Node.js supports clustering, which allows you to create multiple worker processes that can handle requests simultaneously. This takes advantage of the multiple CPU cores available on most modern machines and can significantly improve the performance of your application."
+                    },
+                    {
+                    "step": "Use a load balancer to distribute requests across multiple servers.",
+                    "code": "If your application is running on multiple servers, you can use a load balancer to distribute incoming requests evenly across them. This ensures that no single server becomes overwhelmed and helps to improve the reliability and scalability of your application."
+                    },
+                    {
+                    "step": "Use a distributed cache to improve performance and reduce database load.",
+                    "code": "Caching frequently accessed data in memory can help to reduce the load on your database and improve the performance of your application. You can use a distributed cache like Redis or Memcached to share cached data across multiple servers and improve the scalability of your application."
+                    },
+                    {
+                    "step": "Use asynchronous I/O to improve performance and scalability.",
+                    "code": "Asynchronous I/O is a key feature of Node.js that allows your application to handle multiple requests simultaneously without blocking the event loop. By using asynchronous I/O, you can improve the performance and scalability of your application, especially when dealing with I/O-intensive tasks like file operations or network requests."
+                    }
+                    ]
+                    },
+                    {
+                        "exercise_number": 49,
+                        "title": "Working with Buffers in Node.js",
+                        "objective": "To understand how to work with buffers in Node.js and why they are useful.",
+                        "practical_application": "Imagine you are building a web application that needs to handle binary data, such as images or audio files. You want to use Node.js to handle this data efficiently and securely.",
+                        "step_by_step_solution": [
+                          {
+                            "step": "Create a new buffer from a string.",
+                            "code": "const buf = Buffer.from('Hello World', 'utf8');"
+                          },
+                          {
+                            "step": "Create a new buffer from a binary string.",
+                            "code": "const buf = Buffer.from('01010101', 'binary');"
+                          },
+                          {
+                            "step": "Create a new buffer from an array of integers.",
+                            "code": "const buf = Buffer.from([0x48, 0x65, 0x6c, 0x6c, 0x6f]);"
+                          },
+                          {
+                            "step": "Manipulate the contents of a buffer.",
+                            "code": "buf[0] = 0x65;\nbuf[1] = 0x6c;\nbuf[2] = 0x6c;\nbuf[3] = 0x6f;\nconsole.log(buf.toString()); // 'ello'"
+                          },
+                          {
+                            "step": "Convert a buffer to a JSON object.",
+                            "code": "const json = JSON.stringify({ data: buf });\nconsole.log(json);\n// {\"data\":{\"type\":\"Buffer\",\"data\":[72,101,108,108,111]}}"
+                          },
+                          {
+                            "step": "Convert a JSON object back to a buffer.",
+                            "code": "const obj = JSON.parse(json);\nconst buf = Buffer.from(obj.data);\nconsole.log(buf.toString()); // 'Hello'"
+                          }
+                        ]
+                      },
+                      {
+                        "exercise_number": 50,
+                        "title": "Using Classes in Node.js",
+                        "objective": "To understand how to define and use classes in Node.js.",
+                        "practical_application": "Imagine you are building a web application that requires several modules to work together. You want to organize your code in a clean and maintainable way using classes.",
+                        "step_by_step_solution": [
+                          {
+                            "step": "Create a new class.",
+                            "code": "class MyClass {\n constructor(value) {\n this.value = value;\n }\n getValue() {\n return this.value;\n }\n}"
+                          },
+                          {
+                            "step": "Create a new instance of the class.",
+                            "code": "const myInstance = new MyClass('Hello');"
+                          },
+                          {
+                            "step": "Call a method on the instance.",
+                            "code": "console.log(myInstance.getValue()); // 'Hello'"
+                          },
+                          {
+                            "step": "Extend an existing class.",
+                            "code": "class MySubClass extends MyClass {\n constructor(value) {\n super(value);\n }\n getUppercaseValue() {\n return this.value.toUpperCase();\n }\n}"
+                          },
+                          {
+                            "step": "Create a new instance of the subclass.",
+                            "code": "const mySubInstance = new MySubClass('World');"
+                          },
+                          {
+                            "step": "Call a method on the subclass instance.",
+                            "code": "console.log(mySubInstance.getUppercaseValue()); // 'WORLD'"
+                          }
+                        ]
+                      }
+]

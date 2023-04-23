@@ -1,0 +1,61 @@
+ponent));"
+         }
+      ]
+   },
+   {
+      "exercise_number":14,
+      "title":"CSS Modules",
+      "objective":"To understand how to use CSS Modules to style React components.",
+      "practical_application":"Imagine you are building a web application with multiple React components. You want to use modular CSS to avoid class name collisions and make your CSS more maintainable.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a CSS file for your component and enable CSS Modules in your build process.",
+            "code":"import styles from './Component.module.css';"
+         },
+         {
+            "step":"Add CSS classes to your component using the generated CSS Modules object.",
+            "code":"<div className={styles.container}>"
+         },
+         {
+            "step":"Use camelCase syntax to access CSS class names with hyphens.",
+            "code":"<div className={styles['container-fluid']}>"
+         }
+      ]
+   },
+   {
+      "exercise_number":15,
+      "title":"React Context API",
+      "objective":"To understand how to use the React Context API to manage global state in a React application.",
+      "practical_application":"Imagine you are building a e-commerce website with a shopping cart component. You want to manage the cart state in a global context so that it can be easily accessed and updated by any component in your application.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a new context object using React.createContext().",
+            "code":"const CartContext = React.createContext();"
+         },
+         {
+            "step":"Wrap the parent component of your context consumers with a CartContext.Provider component.",
+            "code":"<CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>\n  <App />\n</CartContext.Provider>"
+         },
+         {
+            "step":"Use the useContext() hook to access the context values in your component.",
+            "code":"const { cartItems, addToCart, removeFromCart } = useContext(CartContext);"
+         }
+      ]
+   },
+   {
+      "exercise_number":16,
+      "title":"Handling Form Data",
+      "objective":"To learn how to handle form data in a React application.",
+      "practical_application":"Imagine you are building a contact form in a React application. You want to capture the form data and submit it to a server for processing.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a state object to hold the form data.",
+            "code":"const [formData, setFormData] = useState({});"
+         },
+         {
+            "step":"Create a function to handle changes to the form data.",
+            "code":"const handleChange = (event) => {\n  setFormData({ ...formData, [event.target.name]: event.target.value });\n};"
+         },
+         {
+            "step":"Attach the handleChange function to the onChange event of each form input.",
+            "code":"<input type='text' name='name' value=

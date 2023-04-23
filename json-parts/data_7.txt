@@ -1,0 +1,71 @@
+ "step_by_step_solution":[
+         {
+            "step":"Use the element selector to target an HTML element.",
+            "code":"p {\n  color: red;\n}"
+         },
+         {
+            "step":"Use the class selector to target elements with a specific class.",
+            "code":".my-class {\n  font-size: 16px;\n}"
+         },
+         {
+            "step":"Use the ID selector to target an element with a specific ID.",
+            "code":"#my-id {\n  background-color: blue;\n}"
+         },
+         {
+            "step":"Use the attribute selector to target elements with a specific attribute.",
+            "code":"input[type='text'] {\n  border: 1px solid black;\n}"
+         }
+      ]
+   },
+   {
+      "exercise_number":20,
+      "title":"CSS Box Model",
+      "objective":"To learn how to use the CSS box model to layout and position HTML elements on a web page.",
+      "practical_application":"Imagine you are building a web page layout in CSS. You want to use the CSS box model to position and size your HTML elements.",
+      "step_by_step_solution":[
+         {
+            "step":"Understand the components of the box model: content, padding, border, and margin.",
+            "code":""
+         },
+         {
+            "step":"Use the box-sizing property to control how the width and height of an element are calculated.",
+            "code":"box-sizing: border-box;"
+         },
+         {
+            "step":"Use the padding property to add space between the content and the border of an element.",
+            "code":"padding: 10px;"
+         },
+         {
+            "step":"Use the border property to add a border around an element.",
+            "code":"border: 1px solid black;"
+         },
+         {
+            "step":"Use the margin property to add space between an element and adjacent elements.",
+            "code":"margin: 10px;"
+         }
+      ]
+   },
+   {
+      "exercise_number":21,
+      "title":"React Portals",
+      "objective":"To understand how to use React Portals to render a child component in a different part of the DOM.",
+      "practical_application":"Imagine you are building a modal component that should be rendered at the top level of the DOM, so that it appears on top of all other content on the page.",
+      "step_by_step_solution":[
+         {
+            "step":"Import the createPortal method from the React library.",
+            "code":"import { createPortal } from 'react-dom';"
+         },
+         {
+            "step":"Create a new div element to serve as the target container for the portal.",
+            "code":"const modalRoot = document.createElement('div');\ndocument.body.appendChild(modalRoot);"
+         },
+         {
+            "step":"Render the child component using the createPortal method.",
+            "code":"return createPortal(\n  <ModalContent />, // Child component\n  modalRoot // Target container\n);"
+         }
+      ]
+   },
+   {
+      "exercise_number":22,
+      "title":"React Strict Mode",
+      "o

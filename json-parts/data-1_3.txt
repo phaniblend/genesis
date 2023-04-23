@@ -1,0 +1,74 @@
+he React library.",
+            "code":"import React, { createPortal } from 'react';"
+         },
+         {
+            "step":"Create a new DOM node to serve as the target for the portal.",
+            "code":"const portalNode = document.createElement('div');\ndocument.body.appendChild(portalNode);"
+         },
+         {
+            "step":"Create a new component that will be rendered as a portal.",
+            "code":"const Portal = ({ children }) => {\n  return createPortal(children, portalNode);\n};"
+         },
+         {
+            "step":"Render the child component inside the Portal component.",
+            "code":"<Portal>\n  <DropdownMenu />\n</Portal>"
+         }
+      ]
+   },
+   {
+      "exercise_number":38,
+      "title":"Working with the Fetch API",
+      "objective":"To understand how to use the Fetch API to send and receive data in a React application.",
+      "practical_application":"Imagine you are building a weather app in a React application. You want to use the Fetch API to retrieve weather data from a third-party API and display it in your application.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a new component to handle the API request and response.",
+            "code":"const Weather = () => {\n  const [weather, setWeather] = useState(null);\n\n  useEffect(() => {\n    fetch('https://api.weatherapi.com/v1/current.json?key=<YOUR_API_KEY>&q=London')\n      .then(response => response.json())\n      .then(data => setWeather(data));\n  }, []);\n\n  return weather ? <WeatherDisplay weather={weather} /> : <div>Loading...</div>;\n};"
+         },
+         {
+            "step":"Render the Weather component in your application.",
+            "code":"<Weather />"
+         }
+      ]
+   },
+   {
+      "exercise_number":39,
+      "title":"React Context",
+      "objective":"To learn how to use React Context to share state between components.",
+      "practical_application":"Imagine you are building a multi-level navigation menu in React. You want to pass the currently active menu item down to the sub-menu components without using props drilling.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a new context object using createContext().",
+            "code":"const MyContext = React.createContext(defaultValue);"
+         },
+         {
+            "step":"Wrap your component hierarchy in a provider component, passing the value to be shared via the value prop.",
+            "code":"<MyContext.Provider value={myValue}>\n  <App />\n</MyContext.Provider>"
+         },
+         {
+            "step":"Access the shared value in any child component by calling useContext() with the context object.",
+            "code":"const myValue = useContext(MyContext);"
+         }
+      ]
+   },
+   {
+      "exercise_number":40,
+      "title":"React Error Boundaries",
+      "objective":"To learn how to use React error boundaries to catch and handle errors in components.",
+      "practical_application":"Imagine you are building a form in a React application that allows users to submit data to an API. You want to catch any errors that may occur during form submission and display an error message to the user.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a new error boundary component using the componentDidCatch() lifecycle method.",
+            "code":"class ErrorBoundary extends React.Component {\n  componentDidCatch(error, errorInfo) {\n    // handle error here\n  }\n\n  render() {\n    return this.props.children;\n  }\n}"
+         },
+         {
+            "step":"Wrap any component that may throw an error in the error boundary component.",
+            "code":"<ErrorBoundary>\n  <MyComponent />\n</ErrorBoundary>"
+         }
+      ]
+   },
+   {
+      "exercise_number":41,
+      "title":"React.lazy() and Suspense",
+      "objective":"To learn how to use the React.lazy() function and Suspense component to lazily load and render components.",
+      "practical_application"

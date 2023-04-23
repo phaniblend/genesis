@@ -1,0 +1,34 @@
+ress server that listens for incoming requests and renders your React component to HTML using the server-side rendering function.",
+            "code":"const app = express();\n\napp.get('/', (req, res) => {\n  const html = renderToString(<App />);\n  res.send(html);\n});\n\napp.listen(3000, () => {\n  console.log('Server listening on port 3000');\n});"
+         },
+         {
+            "step":"Create a client-side JavaScript bundle that hydrates your server-rendered HTML with JavaScript event handlers and data.",
+            "code":"ReactDOM.hydrate(<App />, document.getElementById('root'));"
+         }
+      ]
+   },
+   {
+      "exercise_number":50,
+      "title":"React Native",
+      "objective":"To learn how to use React Native to build mobile applications for iOS and Android.",
+      "practical_application":"Imagine you want to build a mobile application for your business that is available on both iOS and Android devices. You want to use a single codebase to minimize development time and cost.",
+      "step_by_step_solution":[
+         {
+            "step":"Install the necessary dependencies, including React Native CLI and the Android and iOS development tools.",
+            "code":"npm install -g react-native-cli\nbrew install node\nbrew install watchman\nnpx react-native init MyApp"
+         },
+         {
+            "step":"Create a new React Native component that renders your application's user interface.",
+            "code":"import React from 'react';\nimport { View, Text } from 'react-native';\n\nconst App = () => {\n  return (\n    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>\n      <Text>Hello, world!</Text>\n    </View>\n  );\n};\n\nexport default App;"
+         },
+         {
+            "step":"Add any necessary native components to your application, such as native modules or third-party libraries.",
+            "code":"npm install --save react-native-maps"
+         },
+         {
+            "step":"Run your application on a mobile device or emulator to test its functionality and user interface.",
+            "code":"npx react-native run-android\nnpx react-native run-ios"
+         }
+      ]
+   }
+]

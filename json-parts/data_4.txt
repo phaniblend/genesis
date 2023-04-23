@@ -1,0 +1,57 @@
+tion state across all pages of the application.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a new context using the createContext function from the React library.",
+            "code":"const AuthContext = createContext();"
+         },
+         {
+            "step":"Wrap your application components in a context provider component.",
+            "code":"<AuthContext.Provider value={auth}>{children}</AuthContext.Provider>"
+         },
+         {
+            "step":"Use the useContext hook to access context data in child components.",
+            "code":"const auth = useContext(AuthContext);"
+         }
+      ]
+   },
+   {
+      "exercise_number":12,
+      "title":"React Redux",
+      "objective":"To learn how to use Redux to manage global state in a React application.",
+      "practical_application":"Imagine you are building a shopping cart in a React application. You want to manage the cart's state using Redux.",
+      "step_by_step_solution":[
+         {
+            "step":"Install Redux and the React bindings for Redux using npm or yarn.",
+            "code":"npm install redux react-redux"
+         },
+         {
+            "step":"Create a new Redux store using the createStore function from the Redux library.",
+            "code":"const store = createStore(reducer);"
+         },
+         {
+            "step":"Wrap your application components in a Provider component from the react-redux library.",
+            "code":"<Provider store={store}>{children}</Provider>"
+         },
+         {
+            "step":"Create a reducer function to manage your application's state.",
+            "code":"function reducer(state, action) {\n // Handle actions here.\n}"
+         }
+      ]
+   },
+   {
+      "exercise_number":13,
+      "title":"Higher-Order Components",
+      "objective":"To learn how to use higher-order components to enhance the functionality of a React component.",
+      "practical_application":"Imagine you are building a blog application with multiple components. You want to add authentication to your components without duplicating the authentication logic in each component.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a Higher-Order Component that adds additional props to a component.",
+            "code":"const withAuth = (Component) => {\n  const isAuthenticated = true;\n  return (props) => {\n    return <Component isAuthenticated={isAuthenticated} {...props} />\n  }\n};"
+         },
+         {
+            "step":"Create a Higher-Order Component that adds additional methods to a component.",
+            "code":"const withLogging = (Component) => {\n  const log = (message) => {\n    console.log(message);\n  }\n  return (props) => {\n    return <Component log={log} {...props} />\n  }\n};"
+         },
+         {
+            "step":"Compose multiple Higher-Order Components to enhance a component with multiple functionalities.",
+            "code":"const enhancedComponent = withAuth(withLogging(Com

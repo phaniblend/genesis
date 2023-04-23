@@ -1,0 +1,78 @@
+se the current property of the reference to access the properties and methods of the DOM element.",
+            "code":"console.log(ref.current.value);"
+         }
+      ]
+   },
+   {
+      "exercise_number":31,
+      "title":"Server-Side Rendering with React",
+      "objective":"To learn how to use server-side rendering with React.",
+      "practical_application":"Imagine you are building a React application that requires search engine optimization. You want to use server-side rendering to improve your application's SEO.",
+      "step_by_step_solution":[
+         {
+            "step":"Install the required dependencies for server-side rendering.",
+            "code":"npm install --save react react-dom express"
+         },
+         {
+            "step":"Create a server.js file for your application.",
+            "code":"const express = require('express');\nconst React = require('react');\nconst ReactDOMServer = require('react-dom/server');"
+         },
+         {
+            "step":"Create a middleware function that will render your application on the server.",
+            "code":"const renderApp = (req, res, next) => {\n  const appString = ReactDOMServer.renderToString(<App />);\n  res.send(appString);\n};"
+         },
+         {
+            "step":"Set up your Express server to use the middleware function.",
+            "code":"const app = express();\napp.use(renderApp);\napp.listen(3000);"
+         }
+      ]
+   },
+   {
+      "exercise_number":32,
+      "title":"Using React Suspense",
+      "objective":"To understand how to use React Suspense to handle asynchronous data loading in a React application.",
+      "practical_application":"Imagine you are building a React application that displays data from an external API. You want to use React Suspense to handle the asynchronous data loading and display a loading state while the data is being fetched.",
+      "step_by_step_solution":[
+         {
+            "step":"Import the Suspense component from the React library.",
+            "code":"import { Suspense } from 'react';"
+         },
+         {
+            "step":"Wrap your component that will display the asynchronously loaded data in the Suspense component.",
+            "code":"<Suspense fallback={<div>Loading...</div>}>\n  <ComponentWithData />\n</Suspense>"
+         },
+         {
+            "step":"Use the lazy function to import the module that will fetch the data.",
+            "code":"const ComponentWithData = lazy(() => import('./ComponentWithData'));"
+         }
+      ]
+   },
+   {
+      "exercise_number":33,
+      "title":"Code Splitting",
+      "objective":"To learn how to use code splitting to optimize the performance of a React application.",
+      "practical_application":"Imagine you are building a large-scale React application. You want to improve its performance by breaking it into smaller chunks that can be loaded only when needed.",
+      "step_by_step_solution":[
+         {
+            "step":"Identify the code that can be split into smaller chunks.",
+            "code":""
+         },
+         {
+            "step":"Use dynamic imports to split the code into smaller chunks.",
+            "code":"const MyComponent = React.lazy(() => import('./MyComponent'));"
+         },
+         {
+            "step":"Use React.lazy() to load the code only when needed.",
+            "code":""
+         },
+         {
+            "step":"Use the Suspense component to display a fallback while the code is loading.",
+            "code":"<Suspense fallback={<div>Loading...</div>}>\n  <MyComponent />\n</Suspense>"
+         }
+      ]
+   },
+   {
+      "exercise_number":34,
+      "title":"Server-Side Rendering",
+      "objective":"To understand how to use server-side rendering to improve the performance and SEO of a React application.",
+      "practical_application":"Imagine you are building a React application that needs to be search engine optimized. You want to improve its SEO and performance by rendering some parts of the application o

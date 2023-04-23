@@ -1,0 +1,38 @@
+[
+   {
+      "exercise_number":1,
+      "title":"Creating a React Component",
+      "objective":"To understand how to create a basic React component using the JSX syntax.",
+      "practical_application":"Imagine you are building a simple web page that displays a welcome message to the user.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a new file called Welcome.jsx in your project directory.",
+            "code":"import React from 'react';\n\nfunction Welcome() {\n  return (\n    <div>\n      <h1>Welcome to My Website!</h1>\n    </div>\n  );\n}\n\nexport default Welcome;"
+         },
+         {
+            "step":"Import the Welcome component into your App.js file.",
+            "code":"import React from 'react';\nimport Welcome from './Welcome';\n\nfunction App() {\n  return (\n    <div>\n      <Welcome />\n    </div>\n  );\n}\n\nexport default App;"
+         },
+         {
+            "step":"Render the Welcome component inside your App component.",
+            "code":"import React from 'react';\nimport Welcome from './Welcome';\n\nfunction App() {\n  return (\n    <div>\n      <Welcome />\n    </div>\n  );\n}\n\nexport default App;"
+         }
+      ]
+   },
+   {
+      "exercise_number":2,
+      "title":"Passing Props to a React Component",
+      "objective":"To understand how to pass props to a React component.",
+      "practical_application":"Imagine you are building a simple blog that displays a list of articles. You want to pass the title and content of each article as props to a component that renders each article.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a new file called Article.jsx in your project directory.",
+            "code":"import React from 'react';\n\nfunction Article(props) {\n  return (\n    <div>\n      <h2>{props.title}</h2>\n      <p>{props.content}</p>\n    </div>\n  );\n}\n\nexport default Article;"
+         },
+         {
+            "step":"Import the Article component into your App.js file.",
+            "code":"import React from 'react';\nimport Article from './Article';\n\nfunction App() {\n  return (\n    <div>\n      <Article title='First Article' content='This is the content of the first article.' />\n      <Article title='Second Article' content='This is the content of the second article.' />\n      <Article title='Third Article' content='This is the content of the third article.' />\n    </div>\n  );\n}\n\nexport default App;"
+         },
+         {
+            "step":"Pass the title and content of each article as props to the Article component.",
+            "code":"import React from 'react';\nimport Article from './Article';\n\nfunction App() {\n  return (\n    <div>\n      <Article title='First Article' content='This is the content of the first article.' />\n      <Article title='Second Article' content='This is the content of the second article.' />\n      <Article title='Third Article' content='This is the content of the third article.' />\n    </div>\/

@@ -1,0 +1,72 @@
+n the server.",
+      "step_by_step_solution":[
+         {
+            "step":"Install the necessary packages for server-side rendering.",
+            "code":"npm install express react-dom react-router-dom"
+         },
+         {
+            "step":"Create an Express server that renders the React application.",
+            "code":""
+         },
+         {
+            "step":"Use the ReactDOMServer.renderToString() method to render the React components on the server.",
+            "code":""
+         },
+         {
+            "step":"Pass the rendered HTML to the client-side React application.",
+            "code":""
+         }
+      ]
+   },
+   {
+      "exercise_number":35,
+      "title":"Error Boundaries",
+      "objective":"To understand how to use error boundaries to handle errors in a React application.",
+      "practical_application":"Imagine you are building a large-scale React application. You want to improve its error handling capabilities by catching errors in specific components.",
+      "step_by_step_solution":[
+         {
+            "step":"Create an error boundary component.",
+            "code":"class ErrorBoundary extends React.Component {\n  constructor(props) {\n    super(props);\n    this.state = { hasError: false };\n  }\n\n  static getDerivedStateFromError(error) {\n    return { hasError: true };\n  }\n\n  render() {\n    if (this.state.hasError) {\n      return <h1>Something went wrong.</h1>;\n    }\n\n    return this.props.children;\n  }\n}"
+         },
+         {
+            "step":"Wrap the components that may throw errors in the error boundary component.",
+            "code":"<ErrorBoundary>\n  <MyComponent />\n</ErrorBoundary>"
+         }
+      ]
+   },
+   {
+      "exercise_number":36,
+      "title":"React Performance Optimization",
+      "objective":"To learn how to optimize the performance of React applications.",
+      "practical_application":"Imagine you are building a React application that renders a large amount of data. You want to optimize the performance of the application to prevent lag and improve the user experience.",
+      "step_by_step_solution":[
+         {
+            "step":"Use React's shouldComponentUpdate lifecycle method to prevent unnecessary renders.",
+            "code":"shouldComponentUpdate(nextProps, nextState) {\n  return this.props.data !== nextProps.data || this.state !== nextState;\n}"
+         },
+         {
+            "step":"Use React's PureComponent class to automatically implement shouldComponentUpdate.",
+            "code":"class MyComponent extends React.PureComponent {\n  render() {\n    return <div>{this.props.data}</div>;\n  }\n}"
+         },
+         {
+            "step":"Use React's memo function to memoize function components.",
+            "code":"const MyComponent = React.memo(function MyComponent(props) {\n  return <div>{props.data}</div>;\n});"
+         },
+         {
+            "step":"Use React's useCallback hook to memoize function components.",
+            "code":"const MyComponent = React.memo(function MyComponent(props) {\n  return <div>{props.data}</div>;\n});\n\nconst MemoizedComponent = useCallback(\n  () => <MyComponent data={data} />, [data]\n);"
+         },
+         {
+            "step":"Use React's useMemo hook to memoize complex calculations.",
+            "code":"const memoizedValue = useMemo(() => {\n  // perform complex calculation\n  return result;\n}, [dependencies]);"
+         }
+      ]
+   },
+   {
+      "exercise_number":37,
+      "title":"Using React Portals",
+      "objective":"To understand how to use React Portals to render a child component outside of its parent component's DOM hierarchy.",
+      "practical_application":"Imagine you are building a dropdown menu in a React application. You want to ensure that the menu is rendered on top of all other elements on the page, regardless of its position in the DOM hierarchy.",
+      "step_by_step_solution":[
+         {
+            "step":"Import React and the createPortal function from t

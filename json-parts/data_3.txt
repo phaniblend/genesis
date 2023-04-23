@@ -1,0 +1,62 @@
+your application using the Route component.",
+            "code":"<Route exact path='/' component={Home} />\n<Route path='/about' component={About} />\n<Route path='/contact' component={Contact} />"
+         },
+         {
+            "step":"Create navigation links using the Link component.",
+            "code":"<Link to='/'>Home</Link>\n<Link to='/about'>About</Link>\n<Link to='/contact'>Contact</Link>"
+         }
+      ]
+   },
+   {
+      "exercise_number":9,
+      "title":"React Router",
+      "objective":"To learn how to use React Router to add client-side routing to a React application.",
+      "practical_application":"Imagine you are building a multi-page web application in React. You want to add client-side routing to allow users to navigate between pages without a page refresh.",
+      "step_by_step_solution":[
+         {
+            "step":"Install React Router using npm or yarn.",
+            "code":"npm install react-router-dom"
+         },
+         {
+            "step":"Import the necessary components from React Router in your application.",
+            "code":"import { BrowserRouter, Switch, Route } from 'react-router-dom';"
+         },
+         {
+            "step":"Wrap your application components in a BrowserRouter component.",
+            "code":"<BrowserRouter>\n  <App />\n</BrowserRouter>"
+         },
+         {
+            "step":"Define your application routes using the Switch and Route components.",
+            "code":"<Switch>\n  <Route exact path='/about' component={About} />\n  <Route exact path='/contact' component={Contact} />\n</Switch>"
+         },
+         {
+            "step":"Use the Link component to navigate between routes.",
+            "code":"<Link to='/about'>About</Link>"
+         }
+      ]
+   },
+   {
+      "exercise_number":10,
+      "title":"React Hooks",
+      "objective":"To understand how to use React Hooks to manage state and lifecycle methods in functional components.",
+      "practical_application":"Imagine you are building a form in a React application that requires real-time validation of user input. You want to manage the form's state using a functional component.",
+      "step_by_step_solution":[
+         {
+            "step":"Import the useState hook from the React library.",
+            "code":"import React, { useState } from 'react';"
+         },
+         {
+            "step":"Define your state variables using the useState hook.",
+            "code":"const [name, setName] = useState('');"
+         },
+         {
+            "step":"Update your state variables using the setState function returned by the useState hook.",
+            "code":"setName(event.target.value);"
+         }
+      ]
+   },
+   {
+      "exercise_number":11,
+      "title":"React Context",
+      "objective":"To understand how to use the React Context API to manage global state in a React application.",
+      "practical_application":"Imagine you are building a multi-page web application in React. You want to manage user authentica

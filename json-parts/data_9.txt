@@ -1,0 +1,56 @@
+  },
+         {
+            "step":"Access the context data in child components using the useContext() hook.",
+            "code":"const myData = useContext(MyContext);"
+         }
+      ]
+   },
+   {
+      "exercise_number":25,
+      "title":"React Portals",
+      "objective":"To learn how to use React portals to render content in a different part of the DOM.",
+      "practical_application":"Imagine you are building a modal component in a React application. You want to render the modal's contents outside the normal component tree to avoid styling conflicts with the rest of the page.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a new div element to serve as the portal target.",
+            "code":"<div id='portal'></div>"
+         },
+         {
+            "step":"Wrap the content you want to render in a portal in a separate component.",
+            "code":"function ModalContent(props) {\n  return (\n    /* your content */\n  );\n}"
+         },
+         {
+            "step":"Use the createPortal() function from the React DOM library to render the content in the portal target.",
+            "code":"ReactDOM.createPortal(\n  <ModalContent />, // your content\n  document.getElementById('portal') // the portal target\n);"
+         }
+      ]
+   },
+   {
+      "exercise_number":26,
+      "title":"React Lazy and Suspense",
+      "objective":"To learn how to use React.lazy() and React.Suspense to load components lazily and handle fallbacks while they load.",
+      "practical_application":"Imagine you are building a large React application with many components. You want to improve performance by loading components lazily, only when they are needed.",
+      "step_by_step_solution":[
+         {
+            "step":"Import the lazy() and Suspense components from the React library.",
+            "code":"import React, { lazy, Suspense } from 'react';"
+         },
+         {
+            "step":"Wrap your lazy-loaded component in a Suspense component to handle fallbacks while it loads.",
+            "code":"<Suspense fallback={<div>Loading...</div>}>\n  <LazyComponent />\n</Suspense>"
+         },
+         {
+            "step":"Use the lazy() function to create a new lazily-loaded component.",
+            "code":"const LazyComponent = lazy(() => import('./LazyComponent'));"
+         }
+      ]
+   },
+   {
+      "exercise_number":27,
+      "title":"React Portals",
+      "objective":"To understand how to use React portals to render a component outside of its parent component's DOM hierarchy.",
+      "practical_application":"Imagine you are building a modal component that appears when a button is clicked. You want the modal to be rendered outside of the parent component so it can appear on top of all other components on the page.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a new element to use as the portal container.",
+            "code":"const portalContainer = document.createElement('div');\ndocument.body.appendCh

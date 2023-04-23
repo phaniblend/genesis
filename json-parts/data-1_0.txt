@@ -1,0 +1,80 @@
+{
+      "exercise_number":27,
+      "title":"React Portals",
+      "objective":"To understand how to use React portals to render a component outside of its parent component's DOM hierarchy.",
+      "practical_application":"Imagine you are building a modal component that appears when a button is clicked. You want the modal to be rendered outside of the parent component so it can appear on top of all other components on the page.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a new element to use as the portal container.",
+            "code":"const portalContainer = document.createElement('div');\ndocument.body.appendChild(portalContainer);"
+         },
+         {
+            "step":"Create a new component that will be rendered inside the portal container.",
+            "code":"const Modal = ({ children }) => {\n  return ReactDOM.createPortal(\n    children,\n    portalContainer\n  );\n};"
+         },
+         {
+            "step":"Render the modal component inside the parent component.",
+            "code":"<Modal>\n  <h1>Hello World!</h1>\n</Modal>"
+         }
+      ]
+   },
+   {
+      "exercise_number":28,
+      "title":"React Lazy Loading",
+      "objective":"To learn how to use React's lazy loading feature to improve performance by loading components only when they are needed.",
+      "practical_application":"Imagine you are building a large React application with multiple pages. You want to improve the initial load time of the application by lazy loading the components for each page.",
+      "step_by_step_solution":[
+         {
+            "step":"Import the lazy and Suspense components from React.",
+            "code":"import React, { lazy, Suspense } from 'react';"
+         },
+         {
+            "step":"Create a new lazy component using the lazy function.",
+            "code":"const MyComponent = lazy(() => import('./MyComponent'));"
+         },
+         {
+            "step":"Wrap the lazy component in a Suspense component.",
+            "code":"<Suspense fallback={<div>Loading...</div>}>\n  <MyComponent />\n</Suspense>"
+         }
+      ]
+   },
+   {
+      "exercise_number":29,
+      "title":"Using React Fragments",
+      "objective":"To understand how to use React Fragments to group child elements without adding extra nodes to the DOM.",
+      "practical_application":"Imagine you are building a form in a React application. You want to group related form elements together, but you don't want to add extra markup to the DOM.",
+      "step_by_step_solution":[
+         {
+            "step":"Import React and React.Fragment at the top of your file.",
+            "code":"import React, { Fragment } from 'react';"
+         },
+         {
+            "step":"Wrap your child elements in a React Fragment component.",
+            "code":"<Fragment>\n  <label htmlFor='username'>Username:</label>\n  <input type='text' id='username' />\n</Fragment>"
+         },
+         {
+            "step":"Use the shorthand syntax to use a React Fragment without importing it.",
+            "code":"<>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</>"
+         }
+      ]
+   },
+   {
+      "exercise_number":30,
+      "title":"Using the useRef Hook",
+      "objective":"To understand how to use the useRef hook to access the properties and methods of a DOM element.",
+      "practical_application":"Imagine you are building a modal component that appears when a button is clicked. You want to focus on the first input field inside the modal when it appears.",
+      "step_by_step_solution":[
+         {
+            "step":"Import the useRef hook from the React library.",
+            "code":"import { useRef } from 'react';"
+         },
+         {
+            "step":"Create a new reference using the useRef hook.",
+            "code":"const ref = useRef();"
+         },
+         {
+            "step":"Attach the reference to a DOM element using the ref attribute.",
+            "code":"<input ref={ref} />"
+         },
+         {
+            "step":"U

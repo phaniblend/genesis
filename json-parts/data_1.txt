@@ -1,0 +1,60 @@
+"
+         }
+      ]
+   },
+   {
+      "exercise_number":3,
+      "title":"Using Props to Pass Data to a Component",
+      "objective":"To learn how to pass data to a React component using props.",
+      "practical_application":"Imagine you are building a blog and you want to create a component that will display a blog post. You want to be able to pass the title, author, and content of the post to the component as props.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a new function for your component that accepts props as a parameter.",
+            "code":"function BlogPost(props) {\n  return (\n    <div>\n      <h1>{props.title}</h1>\n      <h2>By {props.author}</h2>\n      <p>{props.content}</p>\n    </div>\n  );\n}"
+         },
+         {
+            "step":"Pass the necessary data to your component as props.",
+            "code":"<BlogPost title='My Blog Post' author='Jane Doe' content='This is the content of my blog post.' />"
+         }
+      ]
+   },
+   {
+      "exercise_number":4,
+      "title":"Passing Props to a Component",
+      "objective":"To understand how to pass props to a component in React.",
+      "practical_application":"Imagine you are building a list of items in a React application. You want to display each item's name and price using a separate component for each item.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a new component to display each item.",
+            "code":"function Item(props) {\n  return (\n    <div>\n      <h2>{props.name}</h2>\n      <p>{props.price}</p>\n    </div>\n  );\n}"
+         },
+         {
+            "step":"Pass the item data to the component as props.",
+            "code":"<Item name='Product 1' price='10.99' />"
+         }
+      ]
+   },
+   {
+      "exercise_number":5,
+      "title":"Conditional Rendering in React",
+      "objective":"To understand how to conditionally render content in React based on user interaction or other factors.",
+      "practical_application":"Imagine you are building a form in a React application that asks users to provide their email address. You want to display a confirmation message when the user has successfully submitted the form.",
+      "step_by_step_solution":[
+         {
+            "step":"Create a new state variable to track whether the form has been submitted.",
+            "code":"const [submitted, setSubmitted] = useState(false);"
+         },
+         {
+            "step":"Add an event handler to the form to set the submitted state to true when the form is submitted.",
+            "code":"<form onSubmit={() => setSubmitted(true)}>"
+         },
+         {
+            "step":"Conditionally render the confirmation message using a ternary operator.",
+            "code":"{submitted ? <p>Thank you for submitting the form!</p> : null}"
+         }
+      ]
+   },
+   {
+      "exercise_number":6,
+      "title":"Using the useState Hook in React",
+      "objective":"To understand how to use the useState hook in React t
