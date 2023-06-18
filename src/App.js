@@ -7,7 +7,7 @@ import './App.css';
 function App() {
   const [imageData, setImageData] = useState(null);
   
-  const angular_exercises = [
+  const exercises = [
     {
       "exercise_number": 1,
       "title": "Introduction to Angular",
@@ -1093,7 +1093,8 @@ useEffect(() => {
 
 return (
   <div id="app" className="App">
-    {angular_exercises.map((exercise) => (
+    <h1>ANGULAR</h1>
+    {exercises.map((exercise) => (
       <Exercise key={exercise.exercise_number} exercise={exercise}/>
     ))}
     <button onClick={exportToPDF}>Export to PDF</button>

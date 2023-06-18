@@ -14,7 +14,7 @@ function Exercise(props) {
       <h2 className="exercise-number">{exercise.exercise_number}</h2>
       <h2 className="exercise-title">{exercise.title}</h2>
       <h3 className="exercise-objective">{objective}</h3>
-      <h7 className="exercise-application">{exercise.practical_application}</h7>
+      <h6 className="exercise-application">{exercise.practical_application}</h6>
       {exercise.step_by_step_solution.map((step, index) => (
         <div key={index}>
           <div className="exercise-step">{`${index + 1}. ${step.step}`}</div>
