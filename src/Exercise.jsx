@@ -3,7 +3,7 @@ import './App.css';
 
 function Exercise(props) {
   const { exercise } = props;
-  const objective = props.objectives[exercise.exercise_number - 1];
+  const objective = exercise.objective;
   const consolidatedCode = exercise.step_by_step_solution.reduce((acc, curr) => {
     return acc + curr.code + '\n';
   }, '');
