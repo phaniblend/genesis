@@ -1145,11 +1145,13 @@ const captureComponent = async () => {
   try {
     const appElement = document.getElementById('app');
     const canvas = await html2canvas(appElement);
+    console.log(canvas); // Check the captured canvas object
     return canvas.toDataURL('image/png');
   } catch (error) {
     console.error('Error capturing component:', error);
   }
 };
+
 
 const exportToPDF = async () => {
   try {
