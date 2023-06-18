@@ -6,10 +6,7 @@
               
               function App() {
                 const [imageData, setImageData] = useState(null);
-
-
-                  
-                  
+   
   const mean_exercises =[
     {
       "exercise_number": 1,
