@@ -7,11 +7,6 @@
               function App() {
                 const [imageData, setImageData] = useState(null);
 
-
-              
-
-                
-
 const react_exercises = [
 {
 "exercise_number": 1,
