@@ -1,11 +1,12 @@
-                          import React, { useState, useEffect } from "react";
-              import Exercise from "./Exercise";
-              import html2canvas from 'html2canvas';
-              import jsPDF from 'jspdf';
-              import './App.css';
-              
-              function App() {
-                const [imageData, setImageData] = useState(null);
+import React, { useState, useEffect } from "react";
+import Exercise from "./Exercise";
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import './App.css';
+
+function App() {
+  const [imageData, setImageData] = useState(null);
+  
 
 const react_exercises = [
 {
@@ -1113,41 +1114,46 @@ const react_objectives = [
 ];
                   
 
-                const captureComponent = async () => {
-                  const appElement = document.getElementById('app');
-                  const canvas = await html2canvas(appElement);
-                  return canvas.toDataURL('image/png');
-                };
-              
-                const exportToPDF = (imageData) => {
-                  const pdf = new jsPDF();
-                  const pdfWidth = pdf.internal.pageSize.getWidth();
-                  const pdfHeight = pdf.internal.pageSize.getHeight();
-              
-                  pdf.addImage(imageData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-                  pdf.save('exported_component.pdf');
-                };
-              
-                const handleExportPDF = async () => {
-                  const capturedImageData = await captureComponent();
-                  setImageData(capturedImageData);
-                };
-              
-                useEffect(() => {
-                  if (imageData) {
-                    exportToPDF(imageData);
-                  }
-                }, [imageData]);
-              
-                return (
-                  <div id="app" className="App">
-                    {react_exercises.map((exercise) => (
-                      <Exercise key={exercise.exercise_number} exercise={exercise} objectives={react_objectives} />
-                    ))}
-                    <button onClick={handleExportPDF}>Export to PDF</button>
-                  </div>
-                );
-              }
-              
-              export default App;
-              
+const captureComponent = async () => {
+  try {
+    const appElement = document.getElementById('app');
+    const canvas = await html2canvas(appElement);
+    return canvas.toDataURL('image/png');
+  } catch (error) {
+    console.error('Error capturing component:', error);
+  }
+};
+
+const exportToPDF = async () => {
+  try {
+    const capturedImageData = await captureComponent();
+    if (capturedImageData) {
+      const pdf = new jsPDF();
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+
+      pdf.addImage(capturedImageData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save('exported_component.pdf');
+    }
+  } catch (error) {
+    console.error('Error exporting to PDF:', error);
+  }
+};
+
+useEffect(() => {
+  if (imageData) {
+    exportToPDF();
+  }
+}, [imageData]);
+
+return (
+  <div id="app" className="App">
+    {angular_exercises.map((exercise) => (
+      <Exercise key={exercise.exercise_number} exercise={exercise} objectives={angular_objectives} />
+    ))}
+    <button onClick={exportToPDF}>Export to PDF</button>
+  </div>
+);
+}
+
+export default App;
