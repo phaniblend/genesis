@@ -1,7 +1,7 @@
 .App {
   text-align: left;
   padding: 60px;
-  width: 45%;
+  width: 80%;
 }
 
 .App-logo {
@@ -53,10 +53,10 @@ font-style: italic;
 .exercise-consolidated-code{
   display: block;
   border-radius: 5px;
-  color:chocolate;
+  color:rgb(253, 131, 44);
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  background-color: black;
+  font-size: 14px;
+  background-color: rgb(48, 47, 59);
   white-space: pre-wrap;
   padding: 3%
 }
@@ -73,16 +73,15 @@ font-style: italic;
 }
 .exercise-code{
   display: block;
-  border:3px solid rgb(9, 9, 178);
   border-radius: 5px;
-  color:rgb(9, 1, 16);
+  color:rgb(253, 131, 44);
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
-  background-color: rgb(197, 194, 204);
-  padding: 3%;
+  font-size: 14px;
+  background-color: rgb(48, 47, 59);
   white-space: pre-wrap;
-
+  padding: 3%
 }
+
 
 h2, h1 {
   display:inline;
