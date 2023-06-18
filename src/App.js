@@ -7,7 +7,7 @@ import './App.css';
 function App() {
   const [imageData, setImageData] = useState(null);
   
-  const mean_exercises =[
+  const exercises =[
     {
       "exercise_number": 1,
       "title": "Setting Up a Basic Express Server",
@@ -1287,7 +1287,7 @@ function App() {
 
   return (
     <div id="app" className="App">
-      {angular_exercises.map((exercise) => (
+      {exercises.map((exercise) => (
         <Exercise key={exercise.exercise_number} exercise={exercise}/>
       ))}
       <button onClick={exportToPDF}>Export to PDF</button>
