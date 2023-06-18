@@ -1057,90 +1057,6 @@ function App() {
       ]
     }
       ]
-
-const angular_objectives =[
-  "To understand and use reactive forms in Angular applications.",
-  "To understand and make HTTP requests in Angular applications.",
-  "To understand and use interceptors for handling HTTP requests and responses in Angular applications.",
-  "To understand and write unit tests for Angular applications using testing frameworks like Jasmine and Karma.",
-  "To understand and perform end-to-end testing in Angular applications using Protractor.",
-  "To understand and implement lazy loading in Angular for optimizing the application's initial load time.",
-  "To understand and implement animations in Angular applications using the Angular Animation API.",
-  "To understand and implement accessibility best practices in Angular applications.",
-  "To understand and implement internationalization (i18n) in Angular applications.",
-  "To understand and implement service workers and Progressive Web Apps (PWA) in Angular applications.",
-  "To understand and implement data persistence in Angular applications using technologies like local storage, session storage, and HTTP APIs.",
-  "To understand and use dependency injection in Angular applications.",
-  "To understand and use Angular Material, a UI component library for Angular applications.",
-  "To learn and apply performance optimization techniques in Angular applications.",
-  "To understand and deploy Angular applications to different hosting environments.",
-  "To learn and apply best practices for testing Angular applications.",
-  "To understand and implement server-side rendering (SSR) in Angular applications.", 
-  "To understand and use reactive forms in Angular applications.",
-  "To understand and make HTTP requests in Angular applications.",
-  "To understand and use interceptors for handling HTTP requests and responses in Angular applications.",
-  "To understand and write unit tests for Angular applications using testing frameworks like Jasmine and Karma.",
-  "To understand and perform end-to-end testing in Angular applications using Protractor.",
-  "To understand and implement lazy loading in Angular for optimizing the application's initial load time.",
-  "To understand and implement animations in Angular applications using the Angular Animation API.",
-  "To understand and implement accessibility best practices in Angular applications.",
-  "To understand and implement internationalization (i18n) in Angular applications.",
-  "To understand and implement service workers and Progressive Web Apps (PWA) in Angular applications.",
-  "To understand and implement data persistence in Angular applications using technologies like local storage, session storage, and HTTP APIs.",
-  "To understand and use dependency injection in Angular applications.",
-  "To understand and use Angular Material, a UI component library for Angular applications.",
-  "To learn and apply performance optimization techniques in Angular applications.",
-  "To understand and deploy Angular applications to different hosting environments.",
-  "To learn and apply best practices for testing Angular applications.",
-  "To understand and implement server-side rendering (SSR) in Angular applications.",
-  "To learn and use Angular CLI for creating, building, and managing Angular projects.",
-  "To understand and use Angular routing for creating navigation in Angular applications.",
-  "To understand and use Angular templates and data binding.",
-  "To understand and use Angular components for building the user interface of Angular applications.",
-  "To understand and use Angular services for sharing data and functionality across Angular components.",
-  "To understand and use Angular directives for manipulating the DOM and extending HTML.",
-  "To understand and use Angular modules for organizing and managing Angular applications.",
-  "To understand and use Angular pipes for transforming data in Angular templates.",
-  "To understand and handle form inputs and validations in Angular applications.",
-  "To understand and use Angular lifecycle hooks for managing component lifecycle events.",
-  "To understand and use Angular decorators for enhancing classes in Angular applications.",
-  "To understand and use Angular dependency injection for managing dependencies in Angular applications.",
-  "To understand and use Angular change detection for efficient UI updates in Angular applications.",
-  "To understand and use Angular HTTP client for making HTTP requests in Angular applications.",
-  "To understand and use Angular testing utilities and frameworks for writing unit tests in Angular applications.",
-  "To understand and use Angular router guards for controlling access to routes in Angular applications.",
-  "To understand and use Angular form validation and error handling techniques.",
-  "To understand and use Angular directives for creating reusable and customizable components.",
-  "To understand and use Angular template-driven forms for building forms in Angular applications.",
-  "To understand and use Angular reactive forms for building complex and dynamic forms in Angular applications.",
-  "To understand and use Angular template reference variables and local variables.",
-  "To understand and use Angular content projection for creating flexible and reusable components.",
-  "To understand and use Angular view encapsulation for managing styles and component isolation.",
-  "To understand and use Angular ViewChild and ViewChildren for accessing child components and elements.",
-  "To understand and use Angular ng-template, ng-container, and ngTemplateOutlet for template rendering.",
-  "To understand and use Angular attribute directives for modifying the behavior of elements.",
-  "To understand and use Angular structural directives for conditionally rendering elements in templates.",
-  "To understand and use Angular forms API for programmatically interacting with forms and form controls.",
-  "To understand and use Angular material components like buttons, inputs, dialogs, and tables.",
-  "To understand and use Angular animations for creating interactive and visually appealing UI effects.",
-  "To understand and use Angular custom pipes for transforming and filtering data in templates.",
-  "To understand and use Angular interceptors for modifying HTTP requests and responses.",
-  "To understand and use Angular unit testing with Jasmine and Karma for testing Angular components and services.",
-  "To understand and use Angular end-to-end testing with Protractor for testing Angular applications.",
-  "To understand and implement lazy loading in Angular for optimizing the application's initial load time.",
-  "To understand and implement animations in Angular applications using the Angular Animation API.",
-  "To understand and implement accessibility best practices in Angular applications.",
-  "To understand and implement internationalization (i18n) in Angular applications.",
-  "To understand and implement service workers and Progressive Web Apps (PWA) in Angular applications.",
-  "To understand and implement data persistence in Angular applications using technologies like local storage, session storage, and HTTP APIs.",
-  "To understand and use dependency injection in Angular applications.",
-  "To understand and use Angular Material, a UI component library for Angular applications.",
-  "To learn and apply performance optimization techniques in Angular applications.",
-  "To understand and deploy Angular applications to different hosting environments.",
-  "To learn and apply best practices for testing Angular applications.",
-  "To understand and implement server-side rendering (SSR) in Angular applications."
-]
-
 const captureComponent = async () => {
   try {
     const appElement = document.getElementById('app');
@@ -1178,7 +1094,7 @@ useEffect(() => {
 return (
   <div id="app" className="App">
     {angular_exercises.map((exercise) => (
-      <Exercise key={exercise.exercise_number} exercise={exercise} objectives={angular_objectives} />
+      <Exercise key={exercise.exercise_number} exercise={exercise}/>
     ))}
     <button onClick={exportToPDF}>Export to PDF</button>
   </div>
